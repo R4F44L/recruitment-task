@@ -20,3 +20,18 @@ export const GET_USERS = gql(`
     }
 
 `);
+
+
+export const GET_USER_BY_ID = gql(`
+    query getUsers($id: ID!) {
+        user(id: $id) {
+            id
+      name
+    posts {
+      data{
+        id,title
+      }
+    }
+    }
+}
+`);

@@ -13,3 +13,8 @@ export interface User{
     company?: Company;
     posts?: PostsPage;
 }
+export interface UserDetails{
+    id: string;
+    name?: string;
+    posts?: PostsPage;
+}
