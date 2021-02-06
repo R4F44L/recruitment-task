@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from './Queries';
-import Skeleton from 'react-loading-skeleton';
 import { UsersListItem } from './UsersListItem';
 import { UsersPage } from '../../interfaces/UsersPage';
 import { User } from '../../interfaces/User';
@@ -13,16 +12,9 @@ export const UsersList: React.FC = () => {
 	return (
 		<>
 			<Container>
-				{loading ? (
-					<Skeleton count={10}></Skeleton>
-				) : (
-					data?.users.data.map((u: User, index: number) => (
-						<>
-							{index % 4 === 0 && index !== 0 ? <br /> : <></>}
-							<UsersListItem user={u} key={u.id}></UsersListItem>
-						</>
-					))
-				)}
+				{loading
+					? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <UsersListItem key={i}></UsersListItem>)
+					: data?.users.data.map((u: User) => <UsersListItem user={u} key={u.id}></UsersListItem>)}
 			</Container>
 		</>
 	);
