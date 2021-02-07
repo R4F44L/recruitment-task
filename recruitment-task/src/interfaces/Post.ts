@@ -8,3 +8,8 @@ export interface Post{
     user: User;
     comments: CommentsPage;
 }
+
+export interface PostListItem {
+    id: string;
+    title: string;
+}

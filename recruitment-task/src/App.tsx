@@ -1,8 +1,15 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import { UserDetails } from './components/users/UserDetails';
 import { UsersList } from './components/users/UsersList';
+import { IconContext } from 'react-icons';
+
+const AppContainer = styled.div`
+	width: 1800px;
+	margin: 50px auto 0px auto;
+`;
 
 function App() {
 	const client = new ApolloClient({
@@ -11,18 +18,22 @@ function App() {
 	});
 	return (
 		<ApolloProvider client={client}>
-			<Router>
-				<Switch>
-					<Route path="/posts">"Posts"</Route>
-					<Route path="/user/:id">
-						<UserDetails />
-					</Route>
-					<Route exact path="/">
-						<UsersList></UsersList>
-					</Route>
-					<Route path="*">wszystko</Route>
-				</Switch>
-			</Router>
+			<IconContext.Provider value={{ color: 'blue' }}>
+				<AppContainer>
+					<Router>
+						<Switch>
+							<Route path="/posts">"Posts"</Route>
+							<Route path="/user/:id">
+								<UserDetails />
+							</Route>
+							<Route exact path="/">
+								<UsersList></UsersList>
+							</Route>
+							<Route path="*">wszystko</Route>
+						</Switch>
+					</Router>
+				</AppContainer>
+			</IconContext.Provider>
 		</ApolloProvider>
 	);
 }

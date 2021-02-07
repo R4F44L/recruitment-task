@@ -33,7 +33,7 @@ interface UsersListItemProps {
 export const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	const history = useHistory();
 	const detailsRedirect = useCallback(() => {
-		history.push(`/user/${user?.id}`);
+		history.push(`/user/${user?.id}/`);
 	}, [user, history]);
 	return (
 		<>
