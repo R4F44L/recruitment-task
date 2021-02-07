@@ -13,3 +13,11 @@ export interface PostListItem {
     id: string;
     title: string;
 }
+
+export interface PostDetails{
+    id: string;
+    title: string;
+    body: string;
+    comments: {data: {id: string, name: string, email: string, body: string}};
+    user: {username : string};
+}

@@ -6,9 +6,10 @@ import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
 import { PostListItem } from '../posts/PostListItem';
 import { GET_USER_BY_ID } from './Queries';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImPlus } from 'react-icons/im';
 import { useCallback } from 'react';
+import { IdParam } from '../../shared/Interfaces';
+import { BackArrow } from '../../shared/BackArrow';
 
 const Container = styled.div``;
 const DetailsHeader = styled.h1`
@@ -24,14 +25,11 @@ const HeaderContainer = styled.div`
 `;
 
 export const UserDetails: React.FC = () => {
-	const { id } = useParams<{ id: string }>();
+	const { id } = useParams<IdParam>();
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
 	});
-	const history = useHistory();
-	const backRedirect = useCallback(() => {
-		history.push('/');
-	}, [history]);
+
 	const createPost = useCallback(() => {
 		console.log('create');
 	}, []);
@@ -40,10 +38,7 @@ export const UserDetails: React.FC = () => {
 		<>
 			<Container>
 				<HeaderContainer>
-					<AiOutlineArrowLeft
-						style={{ fontSize: '30px', marginTop: '5px' }}
-						onClick={backRedirect}
-					/>
+					<BackArrow url={'/'} />
 					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
 					<ImPlus style={{ fontSize: '30px', marginTop: '5px' }} onClick={createPost} />
 				</HeaderContainer>

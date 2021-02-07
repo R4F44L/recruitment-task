@@ -5,7 +5,7 @@ import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { AiOutlineRight } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
-import { SkeletonFlexContainer } from '../../shared/styledComponents';
+import { SkeletonFlexContainer } from '../../shared/StyledComponents';
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
