@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { AiOutlineRight } from 'react-icons/ai';
@@ -20,7 +20,7 @@ const Container = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;`;
 
-const Title = styled.p`
+const Title = styled.div`
 	display: flex;
 	margin: 0 0 0 0;
 	width: 100%;
@@ -29,11 +29,12 @@ const Title = styled.p`
 
 export const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 	const history = useHistory();
+	const { url } = useRouteMatch();
 	const postRedirect = useCallback(() => {
 		if (post?.id) {
-			history.push(`${post?.id}/`);
+			history.push(`${url}/${post?.id}/`);
 		}
-	}, [post, history]);
+	}, [post, history, url]);
 	return (
 		<>
 			<Container onClick={postRedirect}>

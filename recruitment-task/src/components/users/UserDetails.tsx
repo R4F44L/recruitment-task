@@ -30,7 +30,7 @@ export const UserDetails: React.FC = () => {
 	});
 	const history = useHistory();
 	const backRedirect = useCallback(() => {
-		history.goBack();
+		history.push('/');
 	}, [history]);
 	const createPost = useCallback(() => {
 		console.log('create');

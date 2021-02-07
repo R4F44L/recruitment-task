@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { UserDetails } from './components/users/UserDetails';
 import { UsersList } from './components/users/UsersList';
 import { IconContext } from 'react-icons';
+import { PostDetails } from './components/posts/PostDeatils';
 
 const AppContainer = styled.div`
 	width: 1800px;
@@ -22,13 +23,9 @@ function App() {
 				<AppContainer>
 					<Router>
 						<Switch>
-							<Route path="/posts">"Posts"</Route>
-							<Route path="/user/:id">
-								<UserDetails />
-							</Route>
-							<Route exact path="/">
-								<UsersList></UsersList>
-							</Route>
+							<Route exact path="/user/:id" component={UserDetails} />
+							<Route path="/user/:id/:postId" component={PostDetails} />
+							<Route exact path="/" component={UsersList} />
 							<Route path="*">wszystko</Route>
 						</Switch>
 					</Router>
