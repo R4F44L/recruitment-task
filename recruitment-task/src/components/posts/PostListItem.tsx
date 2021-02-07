@@ -5,24 +5,34 @@ import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { AiOutlineRight } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
+import { SkeletonFlexContainer } from '../../shared/styledComponents';
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
 
-const Container = styled.div`border 2px solid black; width 80%; margin: 10px auto 10px auto; padding: 10px;   display: flex;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;`;
+const Container = styled.div`
+    border 2px solid black; 
+    width 80%; 
+    margin: 10px auto 10px auto; 
+    padding: 10px;   
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;`;
 
 const Title = styled.p`
-	width: 100%;
+	display: flex;
 	margin: 0 0 0 0;
+	width: 100%;
+	height: 100%;
 `;
 
 export const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 	const history = useHistory();
 	const postRedirect = useCallback(() => {
-		history.push(`${post?.id}/`);
+		if (post?.id) {
+			history.push(`${post?.id}/`);
+		}
 	}, [post, history]);
 	return (
 		<>
@@ -33,13 +43,15 @@ export const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 							marginRight: '10px',
 							verticalAlign: 'middle',
 							display: 'inline-block',
+							marginTop: '3px',
 						}}
 					/>
-					{post?.title || <Skeleton />}
+					<SkeletonFlexContainer>{post?.title || <Skeleton />}</SkeletonFlexContainer>
 					<AiOutlineRight
 						style={{
 							marginLeft: 'auto',
 							verticalAlign: 'middle',
+							marginTop: '3px',
 							display: 'inline-block',
 						}}
 					/>

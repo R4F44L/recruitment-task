@@ -40,9 +40,12 @@ export const UserDetails: React.FC = () => {
 		<>
 			<Container>
 				<HeaderContainer>
-					<AiOutlineArrowLeft style={{ fontSize: '30px' }} onClick={backRedirect} />
+					<AiOutlineArrowLeft
+						style={{ fontSize: '30px', marginTop: '5px' }}
+						onClick={backRedirect}
+					/>
 					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
-					<ImPlus style={{ fontSize: '30px' }} onClick={createPost} />
+					<ImPlus style={{ fontSize: '30px', marginTop: '5px' }} onClick={createPost} />
 				</HeaderContainer>
 				{loading
 					? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <PostListItem key={i} />)
