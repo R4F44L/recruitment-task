@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
-import { PostListItem } from '../posts/PostListItem';
+import PostListItem from '../posts/PostListItem';
 import { GET_USER_BY_ID } from './Queries';
 import { ImPlus } from 'react-icons/im';
 import React, { useCallback } from 'react';

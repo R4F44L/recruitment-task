@@ -1,13 +1,14 @@
 import { useQuery } from '@apollo/client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostDetails as PostDeatilsInterface } from '../../interfaces/Post';
 import { BackArrow } from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
-import { CommentListItem } from './CommentListItem';
 import { GET_POST_BY_ID } from './Queries';
+import { Form, Input, Modal } from 'antd';
+import CommentListItem from '../comments/CommentListItem';
 
 const PostTitle = styled.div`
 	font-size: 30px;
@@ -36,6 +37,26 @@ export const PostDetails: React.FC = () => {
 	const { data, loading, error } = useQuery<{ post: PostDeatilsInterface }>(GET_POST_BY_ID, {
 		variables: { postId },
 	});
+	const [visible, setVisible] = React.useState(false);
+	const [confirmLoading, setConfirmLoading] = React.useState(false);
+
+	const showModal = () => {
+		setVisible(true);
+	};
+
+	const handleOk = () => {
+		console.log(formRef.current);
+		setConfirmLoading(true);
+		setTimeout(() => {
+			setVisible(false);
+			setConfirmLoading(false);
+		}, 2000);
+	};
+	const formRef = useRef(null);
+	const handleCancel = () => {
+		console.log('Clicked cancel button');
+		setVisible(false);
+	};
 	return (
 		<>
 			<Container>
@@ -49,13 +70,33 @@ export const PostDetails: React.FC = () => {
 					<CommentsToggle onClick={toggleComments}>
 						{!showComments ? 'Show' : 'Hide'} comments
 					</CommentsToggle>
-					<CommentsToggle>Add Comment</CommentsToggle>
+					<CommentsToggle onClick={showModal}>Add Comment</CommentsToggle>
 				</CommentsManipulationContainer>
 				{showComments ? (
 					data?.post.comments.data.map((c) => <CommentListItem comment={c}></CommentListItem>)
 				) : (
 					<></>
 				)}
+				<Modal
+					title="Add comment"
+					visible={visible}
+					onOk={handleOk}
+					confirmLoading={confirmLoading}
+					onCancel={handleCancel}
+				>
+					<Form ref={formRef} name="commentForm" initialValues={{ remember: true }}>
+						<Form.Item label="Title" name="title">
+							<Input />
+						</Form.Item>
+
+						<Form.Item label="Body" name="body">
+							<Input />
+						</Form.Item>
+						<Form.Item label="Email" name="email">
+							<Input />
+						</Form.Item>
+					</Form>
+				</Modal>
 			</Container>
 		</>
 	);

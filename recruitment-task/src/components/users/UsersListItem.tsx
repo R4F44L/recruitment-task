@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { User } from '../../interfaces/User';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import React from 'react';
 
 const Container = styled.div`padding: 10px; margin: 40px; border 2px black solid; min-width: 300px; max-width:300px;  float: left`;
 const UserHeader = styled.div`
@@ -30,7 +31,7 @@ interface UsersListItemProps {
 	user?: User;
 }
 
-export const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
+let UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	const history = useHistory();
 	const detailsRedirect = useCallback(() => {
 		history.push(`/user/${user?.id}`);
@@ -55,3 +56,4 @@ export const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 		</>
 	);
 };
+export default UsersListItem = React.memo(UsersListItem);

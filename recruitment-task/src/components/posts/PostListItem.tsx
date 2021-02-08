@@ -27,7 +27,7 @@ const Title = styled.div`
 	height: 100%;
 `;
 
-export const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
+let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 	const history = useHistory();
 	const { url } = useRouteMatch();
 	const postRedirect = useCallback(() => {
@@ -61,3 +61,4 @@ export const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 		</>
 	);
 };
+export default PostListItem = React.memo(PostListItem);

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { PostComment } from '../../interfaces/Post';
 interface CommentListItemProps {
@@ -17,7 +18,7 @@ const CommentEmail = styled.span`
 	color: blue;
 	text-decoration: underline;
 `;
-export const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => {
+let CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => {
 	return (
 		<>
 			<Container>
@@ -30,3 +31,4 @@ export const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => 
 		</>
 	);
 };
+export default CommentListItem = React.memo(CommentListItem);

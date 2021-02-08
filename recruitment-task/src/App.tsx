@@ -6,6 +6,7 @@ import { UserDetails } from './components/users/UserDetails';
 import { UsersList } from './components/users/UsersList';
 import { IconContext } from 'react-icons';
 import { PostDetails } from './components/posts/PostDeatils';
+import 'antd/dist/antd.css';
 
 const AppContainer = styled.div`
 	width: 90%;
