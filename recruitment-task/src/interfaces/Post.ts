@@ -14,10 +14,13 @@ export interface PostListItem {
     title: string;
 }
 
+export interface PostComment{
+    id: string, name: string, email: string, body: string;
+}
 export interface PostDetails{
     id: string;
     title: string;
     body: string;
-    comments: {data: Array<{id: string, name: string, email: string, body: string}>};
+    comments: {data: Array<PostComment>};
     user: {username : string};
 }

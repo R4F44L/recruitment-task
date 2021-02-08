@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { PostDetails as PostDeatilsInterface } from '../../interfaces/Post';
 import { BackArrow } from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
+import { CommentListItem } from './CommentListItem';
 import { GET_POST_BY_ID } from './Queries';
 
 const PostTitle = styled.div`
@@ -19,6 +20,7 @@ const PostDescription = styled.div``;
 const CommentsManipulationContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
+	margin: 20px 0 20px 0;
 `;
 const CommentsToggle = styled.div`
 	color: blue;
@@ -49,7 +51,11 @@ export const PostDetails: React.FC = () => {
 					</CommentsToggle>
 					<CommentsToggle>Add Comment</CommentsToggle>
 				</CommentsManipulationContainer>
-				{showComments ? data?.post.comments.data.map((c) => c.body) : <></>}
+				{showComments ? (
+					data?.post.comments.data.map((c) => <CommentListItem comment={c}></CommentListItem>)
+				) : (
+					<></>
+				)}
 			</Container>
 		</>
 	);

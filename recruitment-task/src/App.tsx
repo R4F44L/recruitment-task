@@ -8,7 +8,7 @@ import { IconContext } from 'react-icons';
 import { PostDetails } from './components/posts/PostDeatils';
 
 const AppContainer = styled.div`
-	width: 1800px;
+	width: 90%;
 	margin: 50px auto 0px auto;
 `;
 
