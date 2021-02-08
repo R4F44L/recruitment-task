@@ -18,6 +18,6 @@ export interface PostDetails{
     id: string;
     title: string;
     body: string;
-    comments: {data: {id: string, name: string, email: string, body: string}};
+    comments: {data: Array<{id: string, name: string, email: string, body: string}>};
     user: {username : string};
 }

@@ -1,28 +1,16 @@
 import { useQuery } from '@apollo/client';
 import Skeleton from 'react-loading-skeleton';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
 import { PostListItem } from '../posts/PostListItem';
 import { GET_USER_BY_ID } from './Queries';
 import { ImPlus } from 'react-icons/im';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { IdParam } from '../../shared/Interfaces';
 import { BackArrow } from '../../shared/BackArrow';
-
-const Container = styled.div``;
-const DetailsHeader = styled.h1`
-	margin: 0 0 0 0;
-	height: 100%;
-	width: 100%;
-	text-align: center;
-`;
-const HeaderContainer = styled.div`
-	display: flex;
-	width: 100%;
-	justify-content: space-between;
-`;
+import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 
 export const UserDetails: React.FC = () => {
 	const { id } = useParams<IdParam>();
