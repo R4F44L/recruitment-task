@@ -20,4 +20,15 @@ export const GET_POST_BY_ID = gql`query getPost($postId: ID!) {
       }
     }
   }
-  `;
+`;
+
+
+export const DELETE_POST = gql`mutation deletePost($id: ID!) {
+  deletePost(id: $id)
+}`;
+
+export const CREATE_POST = gql`mutation createPost($post: CreatePostInput!){
+  createPost(input: $post){
+    title, body
+  }
+}`;

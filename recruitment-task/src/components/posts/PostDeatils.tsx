@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
 import React, { useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
@@ -43,31 +43,27 @@ export const PostDetails: React.FC = () => {
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
 
-	const showModal = () => {
+	const showModal = useCallback(() => {
 		setVisible(true);
-	};
-
-	const handleOk = async () => {
+	}, [setVisible]);
+	const formRef = useRef<FormInstance>(null);
+	const handleOk = useCallback(async () => {
 		setConfirmLoading(true);
 		try {
 			const { name, body, email } = await formRef.current?.validateFields();
-
-			const creationRes = await createComment({
+			await createComment({
 				variables: { comment: { name, email, body } },
 			});
+			setConfirmLoading(false);
+			setVisible(false);
 		} catch (err) {
 			console.log('errors', err);
-		}
-
-		setTimeout(() => {
-			setVisible(false);
 			setConfirmLoading(false);
-		}, 2000);
-	};
-	const formRef = useRef<FormInstance>(null);
-	const handleCancel = () => {
+		}
+	}, [createComment, formRef, setConfirmLoading, setVisible]);
+	const handleCancel = useCallback(() => {
 		setVisible(false);
-	};
+	}, [setVisible]);
 	return (
 		<>
 			<Container>
