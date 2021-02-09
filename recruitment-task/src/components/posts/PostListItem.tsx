@@ -8,6 +8,7 @@ import Skeleton from 'react-loading-skeleton';
 import { SkeletonFlexContainer } from '../../shared/StyledComponents';
 import { useMutation } from '@apollo/client';
 import { DELETE_POST } from './Queries';
+import { Spin } from 'antd';
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
@@ -52,29 +53,31 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 	}, [deletePost, setLoading]);
 	return (
 		<>
-			<Container>
-				<Title>
-					<RiDeleteBin6Line
-						style={{
-							marginRight: '10px',
-							verticalAlign: 'middle',
-							display: 'inline-block',
-							marginTop: '3px',
-						}}
-						onClick={removePost}
-					/>
-					<SkeletonFlexContainer>{post?.title || <Skeleton />}</SkeletonFlexContainer>
-					<AiOutlineRight
-						onClick={postRedirect}
-						style={{
-							marginLeft: 'auto',
-							verticalAlign: 'middle',
-							marginTop: '3px',
-							display: 'inline-block',
-						}}
-					/>
-				</Title>
-			</Container>
+			<Spin spinning={loading}>
+				<Container>
+					<Title>
+						<RiDeleteBin6Line
+							style={{
+								marginRight: '10px',
+								verticalAlign: 'middle',
+								display: 'inline-block',
+								marginTop: '3px',
+							}}
+							onClick={removePost}
+						/>
+						<SkeletonFlexContainer>{post?.title || <Skeleton />}</SkeletonFlexContainer>
+						<AiOutlineRight
+							onClick={postRedirect}
+							style={{
+								marginLeft: 'auto',
+								verticalAlign: 'middle',
+								marginTop: '3px',
+								display: 'inline-block',
+							}}
+						/>
+					</Title>
+				</Container>
+			</Spin>
 		</>
 	);
 };

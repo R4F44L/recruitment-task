@@ -1,16 +1,17 @@
 import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
 import React, { useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostDetails as PostDeatilsInterface } from '../../interfaces/Post';
 import { BackArrow } from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
-import { GET_POST_BY_ID } from './Queries';
-import { FormInstance, Modal } from 'antd';
+import { DELETE_POST, GET_POST_BY_ID } from './Queries';
+import { FormInstance, Modal, Spin } from 'antd';
 import CommentListItem from '../comments/CommentListItem';
 import { CommentForm } from '../comments/CommentForm';
 import { CREATE_COMMENT } from '../comments/Queries';
+import { ImMinus } from 'react-icons/im';
 
 const PostTitle = styled.div`
 	font-size: 30px;
@@ -32,6 +33,7 @@ const CommentsToggle = styled.div`
 
 export const PostDetails: React.FC = () => {
 	const [showComments, setShowComments] = useState(false);
+	const history = useHistory();
 	const toggleComments = useCallback(() => {
 		setShowComments(!showComments);
 	}, [showComments]);
@@ -42,7 +44,9 @@ export const PostDetails: React.FC = () => {
 	const [createComment, { data: createdComment }] = useMutation(CREATE_COMMENT);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
-
+	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
+		variables: { id: postId },
+	});
 	const showModal = useCallback(() => {
 		setVisible(true);
 	}, [setVisible]);
@@ -64,38 +68,51 @@ export const PostDetails: React.FC = () => {
 	const handleCancel = useCallback(() => {
 		setVisible(false);
 	}, [setVisible]);
+	const removePost = useCallback(async () => {
+		setConfirmLoading(true);
+		try {
+			const res = await deletePost();
+		} catch (err) {
+			console.log(err);
+		}
+		setConfirmLoading(false);
+		history.push(`/user/${id}`);
+	}, [deletePost, setConfirmLoading, history, id]);
 	return (
 		<>
-			<Container>
-				<HeaderContainer>
-					<BackArrow url={`/user/${id}`} />
-					<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
-				</HeaderContainer>
-				<PostTitle>{data?.post.title || <Skeleton />}</PostTitle>
-				<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>
-				<CommentsManipulationContainer>
-					<CommentsToggle onClick={toggleComments}>
-						{!showComments ? 'Show' : 'Hide'} comments
-					</CommentsToggle>
-					<CommentsToggle onClick={showModal}>Add Comment</CommentsToggle>
-				</CommentsManipulationContainer>
-				{showComments ? (
-					data?.post.comments.data.map((c) => (
-						<CommentListItem comment={c} key={c.id}></CommentListItem>
-					))
-				) : (
-					<></>
-				)}
-				<Modal
-					title="Add comment"
-					visible={visible}
-					onOk={handleOk}
-					confirmLoading={confirmLoading}
-					onCancel={handleCancel}
-				>
-					<CommentForm ref={formRef}></CommentForm>
-				</Modal>
-			</Container>
+			<Spin spinning={confirmLoading}>
+				<Container>
+					<HeaderContainer>
+						<BackArrow url={`/user/${id}`} />
+						<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
+						<ImMinus style={{ fontSize: '30px', marginTop: '5px' }} onClick={removePost} />
+					</HeaderContainer>
+					<PostTitle>{data?.post.title || <Skeleton />}</PostTitle>
+					<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>
+					<CommentsManipulationContainer>
+						<CommentsToggle onClick={toggleComments}>
+							{!showComments ? 'Show' : 'Hide'} comments
+						</CommentsToggle>
+						<CommentsToggle onClick={showModal}>Add Comment</CommentsToggle>
+					</CommentsManipulationContainer>
+					{showComments ? (
+						data?.post.comments.data.map((c) => (
+							<CommentListItem comment={c} key={c.id}></CommentListItem>
+						))
+					) : (
+						<></>
+					)}
+					<Modal
+						title="Add comment"
+						visible={visible}
+						onOk={handleOk}
+						confirmLoading={confirmLoading}
+						onCancel={handleCancel}
+					>
+						<CommentForm ref={formRef}></CommentForm>
+					</Modal>
+				</Container>
+			</Spin>
 		</>
 	);
 };

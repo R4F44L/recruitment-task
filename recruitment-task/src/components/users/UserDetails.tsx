@@ -46,6 +46,7 @@ export const UserDetails: React.FC = () => {
 	const handleCancel = useCallback(() => {
 		setVisible(false);
 	}, [setVisible]);
+
 	return (
 		<>
 			<Container>
