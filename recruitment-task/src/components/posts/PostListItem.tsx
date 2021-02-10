@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/client';
 import { DELETE_POST } from './Queries';
 import { Spin } from 'antd';
 import { openNotification } from '../../shared/Functions';
-import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
+import { SmileOutlined } from '@ant-design/icons';
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
@@ -56,12 +56,6 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 			);
 		} catch (err) {
 			console.log(err);
-			openNotification(
-				'Error occured',
-				'Please check provided data',
-				5,
-				<FrownOutlined style={{ color: 'red' }} />
-			);
 		}
 		setLoading(false);
 	}, [deletePost, setLoading]);

@@ -14,7 +14,7 @@ import { Alert, FormInstance, Modal } from 'antd';
 import { PostForm } from '../posts/PostForm';
 import { CREATE_POST } from '../posts/Queries';
 import { openNotification } from '../../shared/Functions';
-import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
+import { SmileOutlined } from '@ant-design/icons';
 
 export const UserDetails: React.FC = () => {
 	const { id } = useParams<IdParam>();
@@ -47,12 +47,6 @@ export const UserDetails: React.FC = () => {
 		} catch (err) {
 			console.log('errors', err);
 			setConfirmLoading(false);
-			openNotification(
-				'Error occured',
-				'Please check provided data',
-				5,
-				<FrownOutlined style={{ color: 'red' }} />
-			);
 		}
 	}, [createPost, formRef, setConfirmLoading, setVisible]);
 	const handleCancel = useCallback(() => {

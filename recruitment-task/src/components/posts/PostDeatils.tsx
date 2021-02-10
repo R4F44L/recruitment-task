@@ -13,7 +13,7 @@ import { CommentForm } from '../comments/CommentForm';
 import { CREATE_COMMENT } from '../comments/Queries';
 import { ImMinus } from 'react-icons/im';
 import { openNotification } from '../../shared/Functions';
-import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
+import { SmileOutlined } from '@ant-design/icons';
 
 const PostTitle = styled.div`
 	font-size: 30px;
@@ -72,12 +72,6 @@ export const PostDetails: React.FC = () => {
 			setConfirmLoading(false);
 			setVisible(false);
 		} catch (err) {
-			openNotification(
-				'Error occured',
-				'Please check provided data',
-				5,
-				<FrownOutlined style={{ color: 'red' }} />
-			);
 			console.log('errors', err);
 			setConfirmLoading(false);
 		}
@@ -89,20 +83,8 @@ export const PostDetails: React.FC = () => {
 		setConfirmLoading(true);
 		try {
 			const res = await deletePost();
-			openNotification(
-				'Succes',
-				'Data sent correctly',
-				5,
-				<SmileOutlined style={{ color: 'green' }} />
-			);
 		} catch (err) {
 			console.log(err);
-			openNotification(
-				'Error occured',
-				'Please check provided data',
-				5,
-				<FrownOutlined style={{ color: 'red' }} />
-			);
 		}
 		setConfirmLoading(false);
 		history.push(`/user/${id}`);
