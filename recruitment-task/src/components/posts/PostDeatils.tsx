@@ -1,4 +1,4 @@
-import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useHistory, useParams } from 'react-router-dom';
@@ -7,11 +7,13 @@ import { PostDetails as PostDeatilsInterface } from '../../interfaces/Post';
 import { BackArrow } from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 import { DELETE_POST, GET_POST_BY_ID } from './Queries';
-import { FormInstance, Modal, Spin } from 'antd';
+import { Alert, FormInstance, Modal, Spin } from 'antd';
 import CommentListItem from '../comments/CommentListItem';
 import { CommentForm } from '../comments/CommentForm';
 import { CREATE_COMMENT } from '../comments/Queries';
 import { ImMinus } from 'react-icons/im';
+import { openNotification } from '../../shared/Functions';
+import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
 
 const PostTitle = styled.div`
 	font-size: 30px;
@@ -38,9 +40,12 @@ export const PostDetails: React.FC = () => {
 		setShowComments(!showComments);
 	}, [showComments]);
 	const { id, postId } = useParams<{ id: string; postId: string }>();
-	const { data, loading, error } = useQuery<{ post: PostDeatilsInterface }>(GET_POST_BY_ID, {
-		variables: { postId },
-	});
+	const { data, loading, error } = useQuery<{ post: PostDeatilsInterface }, { postId: string }>(
+		GET_POST_BY_ID,
+		{
+			variables: { postId },
+		}
+	);
 	const [createComment, { data: createdComment }] = useMutation(CREATE_COMMENT);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
@@ -58,9 +63,21 @@ export const PostDetails: React.FC = () => {
 			await createComment({
 				variables: { comment: { name, email, body } },
 			});
+			openNotification(
+				'Succes',
+				'Data sent correctly',
+				5,
+				<SmileOutlined style={{ color: 'green' }} />
+			);
 			setConfirmLoading(false);
 			setVisible(false);
 		} catch (err) {
+			openNotification(
+				'Error occured',
+				'Please check provided data',
+				5,
+				<FrownOutlined style={{ color: 'red' }} />
+			);
 			console.log('errors', err);
 			setConfirmLoading(false);
 		}
@@ -72,16 +89,29 @@ export const PostDetails: React.FC = () => {
 		setConfirmLoading(true);
 		try {
 			const res = await deletePost();
+			openNotification(
+				'Succes',
+				'Data sent correctly',
+				5,
+				<SmileOutlined style={{ color: 'green' }} />
+			);
 		} catch (err) {
 			console.log(err);
+			openNotification(
+				'Error occured',
+				'Please check provided data',
+				5,
+				<FrownOutlined style={{ color: 'red' }} />
+			);
 		}
 		setConfirmLoading(false);
 		history.push(`/user/${id}`);
 	}, [deletePost, setConfirmLoading, history, id]);
 	return (
 		<>
-			<Spin spinning={confirmLoading}>
+			<Spin spinning={confirmLoading || loading}>
 				<Container>
+					{error && <Alert message="Error Occured" description="Error" type="error" closable />}
 					<HeaderContainer>
 						<BackArrow url={`/user/${id}`} />
 						<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>

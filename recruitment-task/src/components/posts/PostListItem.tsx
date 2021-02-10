@@ -9,6 +9,8 @@ import { SkeletonFlexContainer } from '../../shared/StyledComponents';
 import { useMutation } from '@apollo/client';
 import { DELETE_POST } from './Queries';
 import { Spin } from 'antd';
+import { openNotification } from '../../shared/Functions';
+import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
@@ -46,8 +48,20 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 		setLoading(true);
 		try {
 			const res = await deletePost();
+			openNotification(
+				'Succes',
+				'Data sent correctly',
+				5,
+				<SmileOutlined style={{ color: 'green' }} />
+			);
 		} catch (err) {
 			console.log(err);
+			openNotification(
+				'Error occured',
+				'Please check provided data',
+				5,
+				<FrownOutlined style={{ color: 'red' }} />
+			);
 		}
 		setLoading(false);
 	}, [deletePost, setLoading]);

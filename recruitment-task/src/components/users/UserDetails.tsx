@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
 import PostListItem from '../posts/PostListItem';
@@ -11,16 +10,17 @@ import React, { useCallback, useRef } from 'react';
 import { IdParam } from '../../shared/Interfaces';
 import { BackArrow } from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
-import { FormInstance, Modal } from 'antd';
+import { Alert, FormInstance, Modal } from 'antd';
 import { PostForm } from '../posts/PostForm';
 import { CREATE_POST } from '../posts/Queries';
+import { openNotification } from '../../shared/Functions';
+import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
 
 export const UserDetails: React.FC = () => {
 	const { id } = useParams<IdParam>();
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
 	});
-
 	const [createPost, { data: createdPost }] = useMutation(CREATE_POST);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
@@ -38,9 +38,21 @@ export const UserDetails: React.FC = () => {
 			});
 			setConfirmLoading(false);
 			setVisible(false);
+			openNotification(
+				'Succes',
+				'Data sent correctly',
+				5,
+				<SmileOutlined style={{ color: 'green' }} />
+			);
 		} catch (err) {
 			console.log('errors', err);
 			setConfirmLoading(false);
+			openNotification(
+				'Error occured',
+				'Please check provided data',
+				5,
+				<FrownOutlined style={{ color: 'red' }} />
+			);
 		}
 	}, [createPost, formRef, setConfirmLoading, setVisible]);
 	const handleCancel = useCallback(() => {
@@ -50,6 +62,7 @@ export const UserDetails: React.FC = () => {
 	return (
 		<>
 			<Container>
+				{error && <Alert message="Error Occured" description="Error" type="error" closable />}
 				<HeaderContainer>
 					<BackArrow url={'/'} />
 					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
