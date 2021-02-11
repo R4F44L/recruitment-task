@@ -40,13 +40,13 @@ export const PostDetails: React.FC = () => {
 		setShowComments(!showComments);
 	}, [showComments]);
 	const { id, postId } = useParams<{ id: string; postId: string }>();
-	const { data, loading, error } = useQuery<{ post: PostDeatilsInterface }, { postId: string }>(
+	const { data, error } = useQuery<{ post: PostDeatilsInterface }, { postId: string }>(
 		GET_POST_BY_ID,
 		{
 			variables: { postId },
 		}
 	);
-	const [createComment, { data: createdComment }] = useMutation(CREATE_COMMENT);
+	const [createComment] = useMutation(CREATE_COMMENT);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
 	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
@@ -82,7 +82,7 @@ export const PostDetails: React.FC = () => {
 	const removePost = useCallback(async () => {
 		setConfirmLoading(true);
 		try {
-			const res = await deletePost();
+			await deletePost();
 		} catch (err) {
 			console.log(err);
 		}
@@ -91,7 +91,7 @@ export const PostDetails: React.FC = () => {
 	}, [deletePost, setConfirmLoading, history, id]);
 	return (
 		<>
-			<Spin spinning={confirmLoading || loading}>
+			<Spin spinning={confirmLoading}>
 				<Container>
 					{error && <Alert message="Error Occured" description="Error" type="error" closable />}
 					<HeaderContainer>
