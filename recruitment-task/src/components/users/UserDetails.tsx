@@ -21,10 +21,9 @@ export const UserDetails: React.FC = () => {
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
 	});
-	const [createPost, { data: createdPost }] = useMutation(CREATE_POST);
+	const [createPost] = useMutation(CREATE_POST);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
-
 	const showModal = useCallback(() => {
 		setVisible(true);
 	}, [setVisible]);

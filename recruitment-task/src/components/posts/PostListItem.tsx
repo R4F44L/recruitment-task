@@ -47,7 +47,7 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 	const removePost = useCallback(async () => {
 		setLoading(true);
 		try {
-			const res = await deletePost();
+			await deletePost();
 			openNotification(
 				'Succes',
 				'Data sent correctly',
