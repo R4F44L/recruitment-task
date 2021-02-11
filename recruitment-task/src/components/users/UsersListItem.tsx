@@ -5,7 +5,13 @@ import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import React from 'react';
 
-const Container = styled.div`padding: 10px; margin: 40px; border 2px black solid; min-width: 300px; max-width:300px;  float: left`;
+const Container = styled.div`
+	padding: 10px; 
+	margin: 40px;
+	border 2px black solid;
+	min-width: 300px;
+	max-width:300px;
+	float: left`;
 const UserHeader = styled.div`
 	font-size: 20px;
 	font-weight: bold;
@@ -25,7 +31,12 @@ const ButtonContainer = styled.div`
 	text-align: center;
 	margin: 20px 0 0 0;
 `;
-const DetailsButton = styled.button`padding 20px 40px 20px 40px; background-color: white; box-shadow: 4px 4px 2px -2px gray; width: 80%`;
+const DetailsButton = styled.button`
+	padding 20px 40px 20px 40px;
+	background-color: white; 
+	box-shadow: 4px 4px 2px -2px gray; 
+	width: 80%
+`;
 
 interface UsersListItemProps {
 	user?: User;
