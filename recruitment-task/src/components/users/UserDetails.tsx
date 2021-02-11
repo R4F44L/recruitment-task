@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
-import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
+import { PostInput, PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
 import PostListItem from '../posts/PostListItem';
 import { GET_USER_BY_ID } from './Queries';
@@ -21,7 +21,7 @@ export const UserDetails: React.FC = () => {
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
 	});
-	const [createPost] = useMutation(CREATE_POST);
+	const [createPost] = useMutation<{}, PostInput>(CREATE_POST);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
 	const showModal = useCallback(() => {

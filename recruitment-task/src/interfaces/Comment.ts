@@ -7,3 +7,12 @@ export interface Comment{
     body: string;
     post: Post;
 }
+
+export interface CommentInput {
+    comment : {
+
+        name: string;
+        email: string;
+        body: string;
+    }
+}

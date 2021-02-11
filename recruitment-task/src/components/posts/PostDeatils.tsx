@@ -14,6 +14,7 @@ import { CREATE_COMMENT } from '../comments/Queries';
 import { ImMinus } from 'react-icons/im';
 import { openNotification } from '../../shared/Functions';
 import { SmileOutlined } from '@ant-design/icons';
+import { CommentInput } from '../../interfaces/Comment';
 
 const PostTitle = styled.div`
 	font-size: 30px;
@@ -46,7 +47,7 @@ export const PostDetails: React.FC = () => {
 			variables: { postId },
 		}
 	);
-	const [createComment] = useMutation(CREATE_COMMENT);
+	const [createComment] = useMutation<{}, CommentInput>(CREATE_COMMENT);
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
 	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
