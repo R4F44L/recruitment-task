@@ -15,6 +15,9 @@ const AppContainer = styled.div`
 	margin: 50px auto 0px auto;
 `;
 
+// otypowanie
+// jakikolwiek test?
+
 function App() {
 	const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 		if (graphQLErrors) {

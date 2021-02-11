@@ -24,3 +24,7 @@ export interface PostDetails{
     comments: {data: Array<PostComment>};
     user: {username : string};
 }
+
+export interface PostInput {
+    post: {title : string, body: string}
+}
