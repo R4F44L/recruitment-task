@@ -46,7 +46,7 @@ function App() {
 							<Route exact path="/user/:id" component={UserDetails} />
 							<Route path="/user/:id/:postId" component={PostDetails} />
 							<Route exact path="/" component={UsersList} />
-							<Route path="*">wszystko</Route>
+							<Route path="*" component={UsersList} />
 						</Switch>
 					</Router>
 				</AppContainer>
