@@ -8,12 +8,12 @@ import { GET_USER_BY_ID } from './Queries';
 import { ImPlus } from 'react-icons/im';
 import React, { useCallback, useRef } from 'react';
 import { IdParam } from '../../shared/Interfaces';
-import BackArrow from '../../shared/BackArrow';
+import BackArrow from '../../shared/components/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 import { Alert, FormInstance, Modal } from 'antd';
 import PostForm from '../posts/PostForm';
 import { CREATE_POST } from '../posts/Queries';
-import OpenNotification from '../../shared/Functions';
+import OpenNotification from '../../shared/functions/OpenNotification';
 import { SmileOutlined } from '@ant-design/icons';
 
 const UserDetails: React.FC = () => {

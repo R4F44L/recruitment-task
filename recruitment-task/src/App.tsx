@@ -8,8 +8,9 @@ import { IconContext } from 'react-icons';
 import PostDetails from './components/posts/PostDetails';
 import 'antd/dist/antd.css';
 import { onError } from '@apollo/client/link/error';
-import OpenNotification from './shared/Functions';
+import OpenNotification from './shared/functions/OpenNotification';
 import { FrownOutlined } from '@ant-design/icons';
+import { API_URL } from './env/variables';
 const AppContainer = styled.div`
 	width: 90%;
 	margin: 50px auto 0px auto;
@@ -29,11 +30,11 @@ const App = () => {
 		forward(operation);
 	});
 	const httpLink = new HttpLink({
-		uri: 'https://graphqlzero.almansi.me/api',
+		uri: API_URL,
 	});
 
 	const client = new ApolloClient({
-		uri: 'https://graphqlzero.almansi.me/api',
+		uri: API_URL,
 		cache: new InMemoryCache(),
 		link: from([errorLink, httpLink]),
 	});

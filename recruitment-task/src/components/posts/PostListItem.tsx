@@ -9,7 +9,7 @@ import { SkeletonFlexContainer } from '../../shared/StyledComponents';
 import { useMutation } from '@apollo/client';
 import { DELETE_POST } from './Queries';
 import { Spin } from 'antd';
-import OpenNotification from '../../shared/Functions';
+import OpenNotification from '../../shared/functions/OpenNotification';
 import { SmileOutlined } from '@ant-design/icons';
 interface PostListItemProps {
 	post?: PostListItemInterface;
