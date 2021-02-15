@@ -4,15 +4,15 @@ import Skeleton from 'react-loading-skeleton';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostDetails as PostDeatilsInterface } from '../../interfaces/Post';
-import { BackArrow } from '../../shared/BackArrow';
+import BackArrow from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 import { DELETE_POST, GET_POST_BY_ID } from './Queries';
 import { Alert, FormInstance, Modal, Spin } from 'antd';
 import CommentListItem from '../comments/CommentListItem';
-import { CommentForm } from '../comments/CommentForm';
+import CommentForm from '../comments/CommentForm';
 import { CREATE_COMMENT } from '../comments/Queries';
 import { ImMinus } from 'react-icons/im';
-import { openNotification } from '../../shared/Functions';
+import OpenNotification from '../../shared/Functions';
 import { SmileOutlined } from '@ant-design/icons';
 import { CommentInput } from '../../interfaces/Comment';
 
@@ -34,7 +34,7 @@ const CommentsToggle = styled.div`
 	text-decoration: underline;
 `;
 
-export const PostDetails: React.FC = () => {
+const PostDetails: React.FC = () => {
 	const [showComments, setShowComments] = useState(false);
 	const history = useHistory();
 	const toggleComments = useCallback(() => {
@@ -64,7 +64,7 @@ export const PostDetails: React.FC = () => {
 			await createComment({
 				variables: { comment: { name, email, body } },
 			});
-			openNotification(
+			OpenNotification(
 				'Succes',
 				'Data sent correctly',
 				5,
@@ -129,3 +129,4 @@ export const PostDetails: React.FC = () => {
 		</>
 	);
 };
+export default PostDetails;

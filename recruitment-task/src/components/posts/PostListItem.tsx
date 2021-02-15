@@ -9,7 +9,7 @@ import { SkeletonFlexContainer } from '../../shared/StyledComponents';
 import { useMutation } from '@apollo/client';
 import { DELETE_POST } from './Queries';
 import { Spin } from 'antd';
-import { openNotification } from '../../shared/Functions';
+import OpenNotification from '../../shared/Functions';
 import { SmileOutlined } from '@ant-design/icons';
 interface PostListItemProps {
 	post?: PostListItemInterface;
@@ -48,7 +48,7 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 		setLoading(true);
 		try {
 			await deletePost();
-			openNotification(
+			OpenNotification(
 				'Succes',
 				'Data sent correctly',
 				5,

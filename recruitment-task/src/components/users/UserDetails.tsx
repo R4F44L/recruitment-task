@@ -8,15 +8,15 @@ import { GET_USER_BY_ID } from './Queries';
 import { ImPlus } from 'react-icons/im';
 import React, { useCallback, useRef } from 'react';
 import { IdParam } from '../../shared/Interfaces';
-import { BackArrow } from '../../shared/BackArrow';
+import BackArrow from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 import { Alert, FormInstance, Modal } from 'antd';
-import { PostForm } from '../posts/PostForm';
+import PostForm from '../posts/PostForm';
 import { CREATE_POST } from '../posts/Queries';
-import { openNotification } from '../../shared/Functions';
+import OpenNotification from '../../shared/Functions';
 import { SmileOutlined } from '@ant-design/icons';
 
-export const UserDetails: React.FC = () => {
+const UserDetails: React.FC = () => {
 	const { id } = useParams<IdParam>();
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
@@ -37,7 +37,7 @@ export const UserDetails: React.FC = () => {
 			});
 			setConfirmLoading(false);
 			setVisible(false);
-			openNotification(
+			OpenNotification(
 				'Succes',
 				'Data sent correctly',
 				5,
@@ -79,3 +79,4 @@ export const UserDetails: React.FC = () => {
 		</>
 	);
 };
+export default UserDetails;

@@ -1,7 +1,7 @@
 import { Input, Form, FormInstance } from 'antd';
 import React, { forwardRef } from 'react';
 
-export const CommentForm = forwardRef<FormInstance, {}>((props, ref) => (
+const CommentForm = forwardRef<FormInstance, {}>((props, ref) => (
 	<Form ref={ref} name="commentForm" initialValues={{ remember: true }}>
 		<Form.Item
 			label="Name"
@@ -28,3 +28,5 @@ export const CommentForm = forwardRef<FormInstance, {}>((props, ref) => (
 		</Form.Item>
 	</Form>
 ));
+
+export default CommentForm;

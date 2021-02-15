@@ -42,7 +42,7 @@ interface UsersListItemProps {
 	user?: User;
 }
 
-let UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
+const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	const history = useHistory();
 	const detailsRedirect = useCallback(() => {
 		history.push(`/user/${user?.id}`);
@@ -67,4 +67,4 @@ let UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 		</>
 	);
 };
-export default UsersListItem = React.memo(UsersListItem);
+export default React.memo(UsersListItem);

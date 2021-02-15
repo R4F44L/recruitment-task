@@ -20,7 +20,7 @@ interface CommentListItemProps {
 	comment: PostComment;
 }
 
-let CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => {
+const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => {
 	return (
 		<>
 			<Container>
@@ -33,4 +33,4 @@ let CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => {
 		</>
 	);
 };
-export default CommentListItem = React.memo(CommentListItem);
+export default React.memo(CommentListItem);

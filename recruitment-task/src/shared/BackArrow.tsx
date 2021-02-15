@@ -14,7 +14,7 @@ const Container = styled.div`
 	color: blue;
 `;
 
-export const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
+const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
 	const history = useHistory();
 	const backRedirect = useCallback(() => {
 		history.push(url);
@@ -28,3 +28,4 @@ export const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
 		</>
 	);
 };
+export default BackArrow;

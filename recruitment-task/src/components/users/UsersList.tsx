@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { Alert } from 'antd';
 const Container = styled.div``;
 
-export const UsersList: React.FC = () => {
+const UsersList: React.FC = () => {
 	const { data, loading, error } = useQuery<{ users: UsersPage }>(GET_USERS);
 	return (
 		<>
@@ -20,3 +20,4 @@ export const UsersList: React.FC = () => {
 		</>
 	);
 };
+export default UsersList;

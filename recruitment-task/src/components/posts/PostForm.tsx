@@ -1,7 +1,7 @@
 import { Input, Form, FormInstance } from 'antd';
 import React, { forwardRef } from 'react';
 
-export const PostForm = forwardRef<FormInstance, {}>((props, ref) => (
+const PostForm = forwardRef<FormInstance, {}>((props, ref) => (
 	<Form ref={ref} name="PostForm" initialValues={{ remember: true }}>
 		<Form.Item
 			label="Title"
@@ -15,3 +15,5 @@ export const PostForm = forwardRef<FormInstance, {}>((props, ref) => (
 		</Form.Item>
 	</Form>
 ));
+
+export default PostForm;
