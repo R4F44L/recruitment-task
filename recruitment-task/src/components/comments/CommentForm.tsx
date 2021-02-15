@@ -1,7 +1,7 @@
 import { Input, Form, FormInstance } from 'antd';
 import React, { forwardRef } from 'react';
 
-const CommentForm = forwardRef<FormInstance, {}>((props, ref) => (
+const CommentForm = forwardRef<FormInstance, {}>((_, ref) => (
 	<Form ref={ref} name="commentForm" initialValues={{ remember: true }}>
 		<Form.Item
 			label="Name"
