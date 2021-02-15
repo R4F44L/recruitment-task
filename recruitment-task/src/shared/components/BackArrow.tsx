@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 interface BackArrowProps {

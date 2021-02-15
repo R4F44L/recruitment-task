@@ -1,16 +1,16 @@
 import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import styled from 'styled-components';
-import UserDetails from './components/users/UserDetails';
-import UsersList from './components/users/UsersList';
 import { IconContext } from 'react-icons';
-import PostDetails from './components/posts/PostDetails';
-import 'antd/dist/antd.css';
 import { onError } from '@apollo/client/link/error';
-import OpenNotification from './shared/functions/OpenNotification';
 import { FrownOutlined } from '@ant-design/icons';
+
+import styled from 'styled-components';
+import 'antd/dist/antd.css';
+
+import OpenNotification from './shared/functions/OpenNotification';
 import { API_URL } from './env/variables';
+import { Routing } from './shared/Routing';
+
 const AppContainer = styled.div`
 	width: 90%;
 	margin: 50px auto 0px auto;
@@ -42,14 +42,7 @@ const App = () => {
 		<ApolloProvider client={client}>
 			<IconContext.Provider value={{ color: 'blue' }}>
 				<AppContainer>
-					<Router>
-						<Switch>
-							<Route exact path="/user/:id" component={UserDetails} />
-							<Route path="/user/:id/:postId" component={PostDetails} />
-							<Route exact path="/" component={UsersList} />
-							<Route path="*" component={UsersList} />
-						</Switch>
-					</Router>
+					<Routing />
 				</AppContainer>
 			</IconContext.Provider>
 		</ApolloProvider>
