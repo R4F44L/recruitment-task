@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import UserDetails from './components/users/UserDetails';
 import UsersList from './components/users/UsersList';
 import { IconContext } from 'react-icons';
-import PostDetails from './components/posts/PostDeatils';
+import PostDetails from './components/posts/PostDetails';
 import 'antd/dist/antd.css';
 import { onError } from '@apollo/client/link/error';
 import OpenNotification from './shared/Functions';

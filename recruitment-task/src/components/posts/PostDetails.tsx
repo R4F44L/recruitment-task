@@ -3,7 +3,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PostDetails as PostDeatilsInterface } from '../../interfaces/Post';
+import { PostDetails as PostDetailsInterface } from '../../interfaces/Post';
 import BackArrow from '../../shared/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 import { DELETE_POST, GET_POST_BY_ID } from './Queries';
@@ -41,7 +41,7 @@ const PostDetails: React.FC = () => {
 		setShowComments(!showComments);
 	}, [showComments]);
 	const { id, postId } = useParams<{ id: string; postId: string }>();
-	const { data, error } = useQuery<{ post: PostDeatilsInterface }, { postId: string }>(
+	const { data, error } = useQuery<{ post: PostDetailsInterface }, { postId: string }>(
 		GET_POST_BY_ID,
 		{
 			variables: { postId },
