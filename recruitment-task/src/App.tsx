@@ -15,7 +15,7 @@ const AppContainer = styled.div`
 	margin: 50px auto 0px auto;
 `;
 
-function App() {
+const App = () => {
 	const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 		if (graphQLErrors) {
 			openNotification(
@@ -53,6 +53,6 @@ function App() {
 			</IconContext.Provider>
 		</ApolloProvider>
 	);
-}
+};
 
 export default App;
