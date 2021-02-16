@@ -5,7 +5,7 @@ export const BODY_MISSING_ERROR_MESSAGE = 'Please input body!';
 export const NAME_MISSING_ERROR_MESSAGE = 'Please input your name!';
 export const ERROR_OCCURED_MESSAGE = 'Error Occured';
 export const TITLE_MISSING_ERROR_MESSAGE = 'Please input title!';
-export const SUCCESS_MESSAGE = 'Succes';
+export const SUCCESS_MESSAGE = 'Success';
 export const DATA_SENT_CORRECTLY_MESSAGE = 'Data sent correctly';
 
 export const DETAILS = 'Details';
