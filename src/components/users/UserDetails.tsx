@@ -15,6 +15,11 @@ import PostForm from '../posts/PostForm';
 import { CREATE_POST } from '../posts/Queries';
 import OpenNotification from '../../shared/functions/OpenNotification';
 import { SmileOutlined } from '@ant-design/icons';
+import {
+	ERROR_OCCURED_MESSAGE,
+	DATA_SENT_CORRECTLY_MESSAGE,
+	SUCCESS_MESSAGE,
+} from '../../shared/Strings';
 
 const UserDetails: React.FC = () => {
 	const { id } = useParams<IdParam>();
@@ -38,13 +43,12 @@ const UserDetails: React.FC = () => {
 			setConfirmLoading(false);
 			setVisible(false);
 			OpenNotification(
-				'Succes',
-				'Data sent correctly',
+				SUCCESS_MESSAGE,
+				DATA_SENT_CORRECTLY_MESSAGE,
 				5,
 				<SmileOutlined style={{ color: 'green' }} />
 			);
 		} catch (err) {
-			console.log('errors', err);
 			setConfirmLoading(false);
 		}
 	}, [createPost, formRef, setConfirmLoading, setVisible]);
@@ -55,7 +59,9 @@ const UserDetails: React.FC = () => {
 	return (
 		<>
 			<Container>
-				{error && <Alert message="Error Occured" description="Error" type="error" closable />}
+				{error && (
+					<Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />
+				)}
 				<HeaderContainer>
 					<BackArrow url={'/'} />
 					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
@@ -73,7 +79,7 @@ const UserDetails: React.FC = () => {
 					confirmLoading={confirmLoading}
 					onCancel={handleCancel}
 				>
-					<PostForm ref={formRef}></PostForm>
+					<PostForm ref={formRef} />
 				</Modal>
 			</Container>
 		</>

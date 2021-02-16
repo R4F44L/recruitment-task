@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import React, { useCallback, useRef, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { useHistory, useParams } from 'react-router-dom';
+import { generatePath, useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PostDetails as PostDetailsInterface } from '../../interfaces/Post';
 import BackArrow from '../../shared/components/BackArrow';
@@ -15,6 +15,12 @@ import { ImMinus } from 'react-icons/im';
 import OpenNotification from '../../shared/functions/OpenNotification';
 import { SmileOutlined } from '@ant-design/icons';
 import { CommentInput } from '../../interfaces/Comment';
+import {
+	DATA_SENT_CORRECTLY_MESSAGE,
+	ERROR_OCCURED_MESSAGE,
+	SUCCESS_MESSAGE,
+} from '../../shared/Strings';
+import { USER_DETAILS_PATH } from '../../shared/Constants';
 
 const PostTitle = styled.div`
 	font-size: 30px;
@@ -36,27 +42,32 @@ const CommentsToggle = styled.div`
 
 const PostDetails: React.FC = () => {
 	const [showComments, setShowComments] = useState(false);
+	const [visible, setVisible] = React.useState(false);
+	const [confirmLoading, setConfirmLoading] = React.useState(false);
+	const formRef = useRef<FormInstance>(null);
+
 	const history = useHistory();
+	const { id, postId } = useParams<{ id: string; postId: string }>();
+	const [createComment] = useMutation<{}, CommentInput>(CREATE_COMMENT);
+	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
+		variables: { id: postId },
+	});
+
 	const toggleComments = useCallback(() => {
 		setShowComments(!showComments);
 	}, [showComments]);
-	const { id, postId } = useParams<{ id: string; postId: string }>();
+
 	const { data, error } = useQuery<{ post: PostDetailsInterface }, { postId: string }>(
 		GET_POST_BY_ID,
 		{
 			variables: { postId },
 		}
 	);
-	const [createComment] = useMutation<{}, CommentInput>(CREATE_COMMENT);
-	const [visible, setVisible] = React.useState(false);
-	const [confirmLoading, setConfirmLoading] = React.useState(false);
-	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
-		variables: { id: postId },
-	});
+
 	const showModal = useCallback(() => {
 		setVisible(true);
 	}, [setVisible]);
-	const formRef = useRef<FormInstance>(null);
+
 	const handleOk = useCallback(async () => {
 		setConfirmLoading(true);
 		try {
@@ -65,38 +76,40 @@ const PostDetails: React.FC = () => {
 				variables: { comment: { name, email, body } },
 			});
 			OpenNotification(
-				'Succes',
-				'Data sent correctly',
+				SUCCESS_MESSAGE,
+				DATA_SENT_CORRECTLY_MESSAGE,
 				5,
 				<SmileOutlined style={{ color: 'green' }} />
 			);
 			setConfirmLoading(false);
 			setVisible(false);
-		} catch (err) {
-			console.log('errors', err);
+		} catch {
 			setConfirmLoading(false);
 		}
 	}, [createComment, formRef, setConfirmLoading, setVisible]);
+
 	const handleCancel = useCallback(() => {
 		setVisible(false);
 	}, [setVisible]);
+
 	const removePost = useCallback(async () => {
 		setConfirmLoading(true);
 		try {
 			await deletePost();
-		} catch (err) {
-			console.log(err);
-		}
+		} catch {}
 		setConfirmLoading(false);
-		history.push(`/user/${id}`);
+		history.push(generatePath(USER_DETAILS_PATH, { id }));
 	}, [deletePost, setConfirmLoading, history, id]);
+
 	return (
 		<>
 			<Spin spinning={confirmLoading}>
 				<Container>
-					{error && <Alert message="Error Occured" description="Error" type="error" closable />}
+					{error && (
+						<Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />
+					)}
 					<HeaderContainer>
-						<BackArrow url={`/user/${id}`} />
+						<BackArrow url={generatePath(USER_DETAILS_PATH, { id })} />
 						<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
 						<ImMinus style={{ fontSize: '30px', marginTop: '5px' }} onClick={removePost} />
 					</HeaderContainer>

@@ -11,6 +11,7 @@ import { DELETE_POST } from './Queries';
 import { Spin } from 'antd';
 import OpenNotification from '../../shared/functions/OpenNotification';
 import { SmileOutlined } from '@ant-design/icons';
+import { DATA_SENT_CORRECTLY_MESSAGE, SUCCESS_MESSAGE } from '../../shared/Strings';
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
@@ -49,8 +50,8 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 		try {
 			await deletePost();
 			OpenNotification(
-				'Succes',
-				'Data sent correctly',
+				SUCCESS_MESSAGE,
+				DATA_SENT_CORRECTLY_MESSAGE,
 				5,
 				<SmileOutlined style={{ color: 'green' }} />
 			);

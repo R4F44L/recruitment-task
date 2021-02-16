@@ -4,6 +4,7 @@ import { User } from '../../interfaces/User';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import React from 'react';
+import { DETAILS } from '../../shared/Strings';
 
 const Container = styled.div`
 	padding: 10px; 
@@ -61,7 +62,7 @@ const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 				</UserCompanyCatchPhrase>
 				<UserCompanyBS>{user?.company?.bs || <Skeleton />}</UserCompanyBS>
 				<ButtonContainer onClick={detailsRedirect}>
-					<DetailsButton>Details</DetailsButton>
+					<DetailsButton>{DETAILS}</DetailsButton>
 				</ButtonContainer>
 			</Container>
 		</>

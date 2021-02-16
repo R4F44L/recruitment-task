@@ -10,6 +10,7 @@ import 'antd/dist/antd.css';
 import OpenNotification from './shared/functions/OpenNotification';
 import { API_URL } from './env/variables';
 import { Routing } from './shared/Routing';
+import { ERROR_OCCURED_MESSAGE } from './shared/Strings';
 
 const AppContainer = styled.div`
 	width: 90%;
@@ -20,7 +21,7 @@ const App = () => {
 	const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 		if (graphQLErrors) {
 			OpenNotification(
-				'Error occured',
+				ERROR_OCCURED_MESSAGE,
 				'Please check provided data',
 				5,
 				<FrownOutlined style={{ color: 'red' }} />
