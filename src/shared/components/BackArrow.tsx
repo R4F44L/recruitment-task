@@ -3,6 +3,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { BACK } from '../Strings';
 
 interface BackArrowProps {
 	url: string;
@@ -24,7 +25,7 @@ const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
 		<>
 			<Container onClick={backRedirect}>
 				<AiOutlineArrowLeft />
-				Back
+				{BACK}
 			</Container>
 		</>
 	);

@@ -5,7 +5,7 @@ import { UsersPage } from '../../interfaces/UsersPage';
 import { User } from '../../interfaces/User';
 import styled from 'styled-components';
 import { Alert } from 'antd';
-import { ERROR_OCCURED_MESSAGE } from '../../shared/Strings';
+import { ERROR, ERROR_OCCURED_MESSAGE } from '../../shared/Strings';
 const Container = styled.div``;
 
 const UsersList: React.FC = () => {
@@ -14,7 +14,7 @@ const UsersList: React.FC = () => {
 		<>
 			<Container>
 				{error && (
-					<Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />
+					<Alert message={ERROR_OCCURED_MESSAGE} description={ERROR} type="error" closable />
 				)}
 				{loading
 					? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <UsersListItem key={i}></UsersListItem>)

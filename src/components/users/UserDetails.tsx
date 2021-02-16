@@ -21,6 +21,7 @@ import {
 	SUCCESS_MESSAGE,
 	ADD_COMMENT,
 } from '../../shared/Strings';
+import { ROOT_PATH } from '../../shared/Constants';
 
 const UserDetails: React.FC = () => {
 	const { id } = useParams<IdParam>();
@@ -64,7 +65,7 @@ const UserDetails: React.FC = () => {
 					<Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />
 				)}
 				<HeaderContainer>
-					<BackArrow url={'/'} />
+					<BackArrow url={ROOT_PATH} />
 					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
 					<ImPlus style={{ fontSize: '30px', marginTop: '5px' }} onClick={showModal} />
 				</HeaderContainer>

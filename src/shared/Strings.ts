@@ -16,3 +16,6 @@ export const ADD_COMMENT = 'Add comment';
 export const ERROR = 'Error';
 export const TITLE = 'Title';
 export const BODY = 'Body';
+export const NAME = 'Name';
+export const EMAIL = 'Email';
+export const BACK = 'Back';
