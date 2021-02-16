@@ -1,16 +1,10 @@
-import { ApolloClient, from, HttpLink, InMemoryCache } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 import { IconContext } from 'react-icons';
-import { onError } from '@apollo/client/link/error';
-import { FrownOutlined } from '@ant-design/icons';
 
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
-
-import OpenNotification from './shared/functions/OpenNotification';
-import { API_URL } from './env/variables';
 import { Routing } from './shared/Routing';
-import { ERROR_OCCURED_MESSAGE } from './shared/Strings';
+import { client } from './shared/ApolloClient';
 
 const AppContainer = styled.div`
 	width: 90%;
@@ -18,27 +12,6 @@ const AppContainer = styled.div`
 `;
 
 const App = () => {
-	const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-		if (graphQLErrors) {
-			OpenNotification(
-				ERROR_OCCURED_MESSAGE,
-				'Please check provided data',
-				5,
-				<FrownOutlined style={{ color: 'red' }} />
-			);
-		}
-
-		forward(operation);
-	});
-	const httpLink = new HttpLink({
-		uri: API_URL,
-	});
-
-	const client = new ApolloClient({
-		uri: API_URL,
-		cache: new InMemoryCache(),
-		link: from([errorLink, httpLink]),
-	});
 	return (
 		<ApolloProvider client={client}>
 			<IconContext.Provider value={{ color: 'blue' }}>
