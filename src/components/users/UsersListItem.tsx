@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import { User } from '../../interfaces/User';
 import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { generatePath, useHistory } from 'react-router-dom';
 import React from 'react';
 import { DETAILS } from '../../shared/Strings';
+import { USER_DETAILS_PATH } from '../../shared/Constants';
 
 const Container = styled.div`
 	padding: 10px; 
@@ -46,7 +47,7 @@ interface UsersListItemProps {
 const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	const history = useHistory();
 	const detailsRedirect = useCallback(() => {
-		history.push(`/user/${user?.id}`);
+		if (user) history.push(generatePath(USER_DETAILS_PATH, { id: user?.id }));
 	}, [user, history]);
 	return (
 		<>

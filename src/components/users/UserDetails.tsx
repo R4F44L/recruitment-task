@@ -19,6 +19,7 @@ import {
 	ERROR_OCCURED_MESSAGE,
 	DATA_SENT_CORRECTLY_MESSAGE,
 	SUCCESS_MESSAGE,
+	ADD_COMMENT,
 } from '../../shared/Strings';
 
 const UserDetails: React.FC = () => {
@@ -73,7 +74,7 @@ const UserDetails: React.FC = () => {
 							<PostListItem post={p} key={p.id} />
 					  ))}
 				<Modal
-					title="Add comment"
+					title={ADD_COMMENT}
 					visible={visible}
 					onOk={handleOk}
 					confirmLoading={confirmLoading}

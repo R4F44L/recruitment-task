@@ -55,9 +55,7 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 				5,
 				<SmileOutlined style={{ color: 'green' }} />
 			);
-		} catch (err) {
-			console.log(err);
-		}
+		} catch {}
 		setLoading(false);
 	}, [deletePost, setLoading]);
 	return (

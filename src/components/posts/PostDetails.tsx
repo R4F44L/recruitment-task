@@ -16,8 +16,13 @@ import OpenNotification from '../../shared/functions/OpenNotification';
 import { SmileOutlined } from '@ant-design/icons';
 import { CommentInput } from '../../interfaces/Comment';
 import {
+	ADD_COMMENT,
+	COMMENTS,
 	DATA_SENT_CORRECTLY_MESSAGE,
+	ERROR,
 	ERROR_OCCURED_MESSAGE,
+	HIDE,
+	SHOW,
 	SUCCESS_MESSAGE,
 } from '../../shared/Strings';
 import { USER_DETAILS_PATH } from '../../shared/Constants';
@@ -106,7 +111,7 @@ const PostDetails: React.FC = () => {
 			<Spin spinning={confirmLoading}>
 				<Container>
 					{error && (
-						<Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />
+						<Alert message={ERROR_OCCURED_MESSAGE} description={ERROR} type="error" closable />
 					)}
 					<HeaderContainer>
 						<BackArrow url={generatePath(USER_DETAILS_PATH, { id })} />
@@ -117,9 +122,9 @@ const PostDetails: React.FC = () => {
 					<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>
 					<CommentsManipulationContainer>
 						<CommentsToggle onClick={toggleComments}>
-							{!showComments ? 'Show' : 'Hide'} comments
+							{!showComments ? SHOW : HIDE} {COMMENTS}
 						</CommentsToggle>
-						<CommentsToggle onClick={showModal}>Add Comment</CommentsToggle>
+						<CommentsToggle onClick={showModal}>{ADD_COMMENT}</CommentsToggle>
 					</CommentsManipulationContainer>
 					{showComments ? (
 						data?.post.comments.data.map((c) => (
@@ -129,7 +134,7 @@ const PostDetails: React.FC = () => {
 						<></>
 					)}
 					<Modal
-						title="Add comment"
+						title={ADD_COMMENT}
 						visible={visible}
 						onOk={handleOk}
 						confirmLoading={confirmLoading}
