@@ -17,6 +17,7 @@ export interface PostListItem {
 export interface PostComment{
     id: string, name: string, email: string, body: string;
 }
+
 export interface PostDetails{
     id: string;
     title: string;

@@ -1,7 +1,5 @@
 import { gql } from "@apollo/client";
 
-
-
 export const GET_POST_BY_ID = gql`query getPost($postId: ID!) {
     post(id: $postId) {
       id
@@ -21,7 +19,6 @@ export const GET_POST_BY_ID = gql`query getPost($postId: ID!) {
     }
   }
 `;
-
 
 export const DELETE_POST = gql`mutation deletePost($id: ID!) {
   deletePost(id: $id)

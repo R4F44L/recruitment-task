@@ -1,9 +1,10 @@
 import { HttpLink, ApolloClient, InMemoryCache, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { FrownOutlined } from '@ant-design/icons';
+
 import { API_URL } from '../env/variables';
 import OpenNotification from './functions/OpenNotification';
 import { ERROR_OCCURED_MESSAGE } from './Strings';
-import { FrownOutlined } from '@ant-design/icons';
 
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 	if (graphQLErrors) {

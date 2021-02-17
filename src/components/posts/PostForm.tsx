@@ -1,5 +1,6 @@
-import { Input, Form, FormInstance } from 'antd';
 import React, { forwardRef } from 'react';
+import { Input, Form, FormInstance } from 'antd';
+
 import {
 	BODY,
 	BODY_MISSING_ERROR_MESSAGE,
