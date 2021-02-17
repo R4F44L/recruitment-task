@@ -14,6 +14,7 @@ export const CommentsManipulationContainer = styled.div`
 	justify-content: space-between;
 	margin: 20px 0 20px 0;
 `;
+
 export const CommentsToggle = styled.div`
 	color: blue;
 	text-decoration: underline;

@@ -1,15 +1,17 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { Alert } from 'antd';
+
 import { GET_USERS } from '../../components/users/Queries';
 import UsersListItem from '../../components/users/UsersListItem';
 import { UsersPage } from '../../interfaces/UsersPage';
 import { User } from '../../interfaces/User';
-import { Alert } from 'antd';
 import { ERROR, ERROR_OCCURED_MESSAGE } from '../../shared/Strings';
 import { Container } from '../../shared/Styles';
 
 const UsersList: React.FC = () => {
 	const { data, loading, error } = useQuery<{ users: UsersPage }>(GET_USERS);
+
 	return (
 		<>
 			<Container>
@@ -23,4 +25,5 @@ const UsersList: React.FC = () => {
 		</>
 	);
 };
+
 export default UsersList;

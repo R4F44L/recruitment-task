@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-
 import { Input, Form, FormInstance } from 'antd';
 
 import { EMAIL_REGEX_PATTERN } from '../../shared/Constants';

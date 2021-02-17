@@ -11,7 +11,7 @@ import { PostInput, PostListItem as PostListItemInterface } from '../../interfac
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
 import PostListItem from '../../components/posts/PostListItem';
 import { GET_USER_BY_ID } from '../../components/users/Queries';
-import { IdParam } from '../../shared/Interfaces';
+import { IdParam } from '../../interfaces/RouteParams';
 import BackArrow from '../../shared/components/BackArrow';
 import { Container, DetailsHeader, HeaderContainer, PlusMinusWrapper } from '../../shared/Styles';
 import PostForm from '../../components/posts/PostForm';

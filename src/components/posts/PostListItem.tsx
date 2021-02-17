@@ -3,7 +3,6 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import { AiOutlineRight } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
-
 import { Spin } from 'antd';
 import { useMutation } from '@apollo/client';
 import { SmileOutlined } from '@ant-design/icons';

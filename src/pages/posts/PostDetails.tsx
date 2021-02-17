@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { ImMinus } from 'react-icons/im';
-
 import { Alert, FormInstance, Modal, Spin } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
 import { SmileOutlined } from '@ant-design/icons';

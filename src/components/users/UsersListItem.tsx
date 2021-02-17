@@ -1,8 +1,8 @@
+import React, { useCallback } from 'react';
 import Skeleton from 'react-loading-skeleton';
+
 import { User } from '../../interfaces/User';
-import { useCallback } from 'react';
 import { generatePath, useHistory } from 'react-router-dom';
-import React from 'react';
 import { DETAILS } from '../../shared/Strings';
 import { USER_DETAILS_PATH } from '../../shared/Constants';
 import {
@@ -25,6 +25,7 @@ const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	const detailsRedirect = useCallback(() => {
 		if (user) history.push(generatePath(USER_DETAILS_PATH, { id: user?.id }));
 	}, [user, history]);
+
 	return (
 		<>
 			<UserListItemContainer>
@@ -45,4 +46,5 @@ const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 		</>
 	);
 };
+
 export default React.memo(UsersListItem);
