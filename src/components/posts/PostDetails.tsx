@@ -9,7 +9,7 @@ import { SmileOutlined } from '@ant-design/icons';
 
 import { PostDetails as PostDetailsInterface } from '../../interfaces/Post';
 import BackArrow from '../../shared/components/BackArrow';
-import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
+import { Container, DetailsHeader, HeaderContainer } from '../../shared/Styles';
 import { DELETE_POST, GET_POST_BY_ID } from './Queries';
 import CommentListItem from '../comments/CommentListItem';
 import CommentForm from '../comments/CommentForm';
@@ -32,7 +32,7 @@ import {
 	PostDescription,
 	CommentsManipulationContainer,
 	CommentsToggle,
-} from './Styled';
+} from './Styles';
 
 const PostDetails: React.FC = () => {
 	const [showComments, setShowComments] = useState(false);

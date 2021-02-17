@@ -5,7 +5,7 @@ import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { AiOutlineRight } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
-import { SkeletonFlexContainer } from '../../shared/StyledComponents';
+import { SkeletonFlexContainer } from '../../shared/Styles';
 import { useMutation } from '@apollo/client';
 import { DELETE_POST } from './Queries';
 import { Spin } from 'antd';

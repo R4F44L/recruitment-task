@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 import { Routing } from './shared/Routing';
 import { client } from './shared/ApolloClient';
-import { AppContainer } from './shared/StyledComponents';
+import { AppContainer } from './shared/Styles';
 
 const App = () => {
 	return (

@@ -6,7 +6,7 @@ import {
 	CommentEmail,
 	CommentListItemContainer,
 	CommentListItemHeader,
-} from './Styled';
+} from './Styles';
 
 interface CommentListItemProps {
 	comment: PostComment;
