@@ -1,15 +1,12 @@
-import { ApolloProvider } from '@apollo/client';
+import React from 'react';
 import { IconContext } from 'react-icons';
 
-import styled from 'styled-components';
+import { ApolloProvider } from '@apollo/client';
 import 'antd/dist/antd.css';
+
 import { Routing } from './shared/Routing';
 import { client } from './shared/ApolloClient';
-
-const AppContainer = styled.div`
-	width: 90%;
-	margin: 50px auto 0px auto;
-`;
+import { AppContainer } from './shared/StyledComponents';
 
 const App = () => {
 	return (

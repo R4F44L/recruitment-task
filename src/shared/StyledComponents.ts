@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
 	width: 100%;
 	justify-content: space-between;
 `;
+
 export const Container = styled.div``;
 
 export const DetailsHeader = styled.h1`
@@ -17,4 +18,9 @@ export const DetailsHeader = styled.h1`
 	height: 100%;
 	width: 100%;
 	text-align: center;
+`;
+
+export const AppContainer = styled.div`
+	width: 90%;
+	margin: 50px auto 0px auto;
 `;

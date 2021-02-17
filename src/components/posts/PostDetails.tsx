@@ -1,19 +1,20 @@
-import { useMutation, useQuery } from '@apollo/client';
 import React, { useCallback, useRef, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
+import { ImMinus } from 'react-icons/im';
+
+import { Alert, FormInstance, Modal, Spin } from 'antd';
+import { useMutation, useQuery } from '@apollo/client';
+import { SmileOutlined } from '@ant-design/icons';
+
 import { PostDetails as PostDetailsInterface } from '../../interfaces/Post';
 import BackArrow from '../../shared/components/BackArrow';
 import { Container, DetailsHeader, HeaderContainer } from '../../shared/StyledComponents';
 import { DELETE_POST, GET_POST_BY_ID } from './Queries';
-import { Alert, FormInstance, Modal, Spin } from 'antd';
 import CommentListItem from '../comments/CommentListItem';
 import CommentForm from '../comments/CommentForm';
 import { CREATE_COMMENT } from '../comments/Queries';
-import { ImMinus } from 'react-icons/im';
 import OpenNotification from '../../shared/functions/OpenNotification';
-import { SmileOutlined } from '@ant-design/icons';
 import { CommentInput } from '../../interfaces/Comment';
 import {
 	ADD_COMMENT,
@@ -26,24 +27,12 @@ import {
 	SUCCESS_MESSAGE,
 } from '../../shared/Strings';
 import { USER_DETAILS_PATH } from '../../shared/Constants';
-
-const PostTitle = styled.div`
-	font-size: 30px;
-	font-weight: bold;
-	text-align: center;
-	margin: 30px 0px 30px 0px;
-`;
-const PostDescription = styled.div``;
-
-const CommentsManipulationContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	margin: 20px 0 20px 0;
-`;
-const CommentsToggle = styled.div`
-	color: blue;
-	text-decoration: underline;
-`;
+import {
+	PostTitle,
+	PostDescription,
+	CommentsManipulationContainer,
+	CommentsToggle,
+} from './Styled';
 
 const PostDetails: React.FC = () => {
 	const [showComments, setShowComments] = useState(false);
@@ -147,4 +136,5 @@ const PostDetails: React.FC = () => {
 		</>
 	);
 };
+
 export default PostDetails;

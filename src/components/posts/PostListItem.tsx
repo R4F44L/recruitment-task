@@ -15,7 +15,18 @@ import { DATA_SENT_CORRECTLY_MESSAGE, SUCCESS_MESSAGE } from '../../shared/Strin
 interface PostListItemProps {
 	post?: PostListItemInterface;
 }
-
+const DeleteIconWrapper = styled.div`
+	margin-right: 10px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-top: 3px;
+`;
+const RightArrowWrapper = styled.div`
+	margin-left: auto;
+	vertical-align: middle;
+	margin-top: 3px;
+	display: inline-block;
+`;
 const Container = styled.div`
     border 2px solid black; 
     width 80%; 
@@ -33,18 +44,21 @@ const Title = styled.div`
 	height: 100%;
 `;
 
-let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
+const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
+	const [loading, setLoading] = useState<boolean>(false);
+
 	const history = useHistory();
 	const { url } = useRouteMatch();
+
 	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
 		variables: { id: post?.id },
 	});
-	const [loading, setLoading] = useState<boolean>(false);
 	const postRedirect = useCallback(() => {
 		if (post?.id) {
 			history.push(`${url}/${post?.id}/`);
 		}
 	}, [post, history, url]);
+
 	const removePost = useCallback(async () => {
 		setLoading(true);
 		try {
@@ -58,34 +72,24 @@ let PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 		} catch {}
 		setLoading(false);
 	}, [deletePost, setLoading]);
+
 	return (
 		<>
 			<Spin spinning={loading}>
 				<Container>
 					<Title>
-						<RiDeleteBin6Line
-							style={{
-								marginRight: '10px',
-								verticalAlign: 'middle',
-								display: 'inline-block',
-								marginTop: '3px',
-							}}
-							onClick={removePost}
-						/>
+						<DeleteIconWrapper>
+							<RiDeleteBin6Line onClick={removePost} />
+						</DeleteIconWrapper>
 						<SkeletonFlexContainer>{post?.title || <Skeleton />}</SkeletonFlexContainer>
-						<AiOutlineRight
-							onClick={postRedirect}
-							style={{
-								marginLeft: 'auto',
-								verticalAlign: 'middle',
-								marginTop: '3px',
-								display: 'inline-block',
-							}}
-						/>
+						<RightArrowWrapper>
+							<AiOutlineRight onClick={postRedirect} />
+						</RightArrowWrapper>
 					</Title>
 				</Container>
 			</Spin>
 		</>
 	);
 };
-export default PostListItem = React.memo(PostListItem);
+
+export default React.memo(PostListItem);

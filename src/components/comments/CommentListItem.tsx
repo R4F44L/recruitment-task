@@ -1,36 +1,27 @@
 import React from 'react';
-import styled from 'styled-components';
-import { PostComment } from '../../interfaces/Post';
 
-const Container = styled.div`border: 1px solid black; padding 20px; margin: 20px 0 20px 0`;
-const Header = styled.div`
-	display: flex;
-	justify-content: space-between;
-	margin: 0 0 20px 0;
-`;
-const CommentName = styled.span`
-	font-weight: bold;
-`;
-const CommentEmail = styled.span`
-	color: blue;
-	text-decoration: underline;
-`;
+import { PostComment } from '../../interfaces/Post';
+import {
+	CommentName,
+	CommentEmail,
+	CommentListItemContainer,
+	CommentListItemHeader,
+} from './Styled';
 
 interface CommentListItemProps {
 	comment: PostComment;
 }
 
-const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => {
-	return (
-		<>
-			<Container>
-				<Header>
-					<CommentName>{comment.name}</CommentName>
-					<CommentEmail>{comment.email}</CommentEmail>
-				</Header>
-				{comment.body}
-			</Container>
-		</>
-	);
-};
+const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => (
+	<>
+		<CommentListItemContainer>
+			<CommentListItemHeader>
+				<CommentName>{comment.name}</CommentName>
+				<CommentEmail>{comment.email}</CommentEmail>
+			</CommentListItemHeader>
+			{comment.body}
+		</CommentListItemContainer>
+	</>
+);
+
 export default React.memo(CommentListItem);
