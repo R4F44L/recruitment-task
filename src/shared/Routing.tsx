@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import PostDetails from '../components/posts/PostDetails';
-import UserDetails from '../components/users/UserDetails';
-import UsersList from '../components/users/UsersList';
+import PostDetails from '../pages/posts/PostDetails';
+import UserDetails from '../pages/users/UserDetails';
+import UsersList from '../pages/users/UsersList';
 import { ROOT_PATH, USER_DETAILS_PATH, POST_DETAILS_PATH, WILDCARD_PATH } from './Constants';
 
 export const Routing: React.FC = () => (

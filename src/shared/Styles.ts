@@ -24,3 +24,21 @@ export const AppContainer = styled.div`
 	width: 90%;
 	margin: 50px auto 0px auto;
 `;
+
+export const DeleteIconWrapper = styled.div`
+	margin-right: 10px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-top: 3px;
+`;
+export const RightArrowWrapper = styled.div`
+	margin-left: auto;
+	vertical-align: middle;
+	margin-top: 3px;
+	display: inline-block;
+`;
+
+export const PlusMinusWrapper= styled.div`
+    font-size: 30px;
+    margin-top: 5px;
+`;

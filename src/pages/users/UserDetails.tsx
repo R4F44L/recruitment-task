@@ -1,20 +1,22 @@
-import { useMutation, useQuery } from '@apollo/client';
-import Skeleton from 'react-loading-skeleton';
+import React, { useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { ImPlus } from 'react-icons/im';
+import Skeleton from 'react-loading-skeleton';
+
+import { Alert, FormInstance, Modal } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
+import { useMutation, useQuery } from '@apollo/client';
+
 import { PostInput, PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { UserDetails as UserDetailsInterface } from '../../interfaces/User';
-import PostListItem from '../posts/PostListItem';
-import { GET_USER_BY_ID } from './Queries';
-import { ImPlus } from 'react-icons/im';
-import React, { useCallback, useRef } from 'react';
+import PostListItem from '../../components/posts/PostListItem';
+import { GET_USER_BY_ID } from '../../components/users/Queries';
 import { IdParam } from '../../shared/Interfaces';
 import BackArrow from '../../shared/components/BackArrow';
-import { Container, DetailsHeader, HeaderContainer } from '../../shared/Styles';
-import { Alert, FormInstance, Modal } from 'antd';
-import PostForm from '../posts/PostForm';
-import { CREATE_POST } from '../posts/Queries';
+import { Container, DetailsHeader, HeaderContainer, PlusMinusWrapper } from '../../shared/Styles';
+import PostForm from '../../components/posts/PostForm';
+import { CREATE_POST } from '../../components/posts/Queries';
 import OpenNotification from '../../shared/functions/OpenNotification';
-import { SmileOutlined } from '@ant-design/icons';
 import {
 	ERROR_OCCURED_MESSAGE,
 	DATA_SENT_CORRECTLY_MESSAGE,
@@ -24,17 +26,20 @@ import {
 import { ROOT_PATH } from '../../shared/Constants';
 
 const UserDetails: React.FC = () => {
+	const [visible, setVisible] = React.useState(false);
+	const [confirmLoading, setConfirmLoading] = React.useState(false);
+	const formRef = useRef<FormInstance>(null);
+
 	const { id } = useParams<IdParam>();
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
 	});
 	const [createPost] = useMutation<{}, PostInput>(CREATE_POST);
-	const [visible, setVisible] = React.useState(false);
-	const [confirmLoading, setConfirmLoading] = React.useState(false);
+
 	const showModal = useCallback(() => {
 		setVisible(true);
 	}, [setVisible]);
-	const formRef = useRef<FormInstance>(null);
+
 	const handleOk = useCallback(async () => {
 		setConfirmLoading(true);
 		try {
@@ -54,6 +59,7 @@ const UserDetails: React.FC = () => {
 			setConfirmLoading(false);
 		}
 	}, [createPost, formRef, setConfirmLoading, setVisible]);
+
 	const handleCancel = useCallback(() => {
 		setVisible(false);
 	}, [setVisible]);
@@ -67,7 +73,9 @@ const UserDetails: React.FC = () => {
 				<HeaderContainer>
 					<BackArrow url={ROOT_PATH} />
 					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
-					<ImPlus style={{ fontSize: '30px', marginTop: '5px' }} onClick={showModal} />
+					<PlusMinusWrapper>
+						<ImPlus onClick={showModal} />
+					</PlusMinusWrapper>
 				</HeaderContainer>
 				{loading
 					? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <PostListItem key={i} />)
@@ -87,4 +95,5 @@ const UserDetails: React.FC = () => {
 		</>
 	);
 };
+
 export default UserDetails;

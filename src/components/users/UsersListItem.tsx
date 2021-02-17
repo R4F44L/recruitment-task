@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import { User } from '../../interfaces/User';
 import { useCallback } from 'react';
@@ -6,39 +5,16 @@ import { generatePath, useHistory } from 'react-router-dom';
 import React from 'react';
 import { DETAILS } from '../../shared/Strings';
 import { USER_DETAILS_PATH } from '../../shared/Constants';
-
-const Container = styled.div`
-	padding: 10px; 
-	margin: 40px;
-	border 2px black solid;
-	min-width: 300px;
-	max-width:300px;
-	float: left`;
-const UserHeader = styled.div`
-	font-size: 20px;
-	font-weight: bold;
-	margin: 0 0 20px 0;
-`;
-const UserContact = styled.div`
-	color: blue;
-	text-decoration: underline;
-	margin: 0 0 20px 0;
-`;
-const UserCompanyName = styled.div``;
-const UserCompanyCatchPhrase = styled.div``;
-const UserCompanyBS = styled.div`
-	font-weight: bold;
-`;
-const ButtonContainer = styled.div`
-	text-align: center;
-	margin: 20px 0 0 0;
-`;
-const DetailsButton = styled.button`
-	padding 20px 40px 20px 40px;
-	background-color: white; 
-	box-shadow: 4px 4px 2px -2px gray; 
-	width: 80%
-`;
+import {
+	UserListItemContainer,
+	UserListItemHeader,
+	UserListItemContact,
+	UserListItemCompanyName,
+	UserListItemCompanyCatchPhrase,
+	UserListItemCompanyBS,
+	UserListItemButtonContainer,
+	UserListItemDetailsButton,
+} from './Styles';
 
 interface UsersListItemProps {
 	user?: User;
@@ -51,21 +27,21 @@ const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	}, [user, history]);
 	return (
 		<>
-			<Container>
-				<UserHeader>{user?.name || <Skeleton />} </UserHeader>
-				<UserContact>
+			<UserListItemContainer>
+				<UserListItemHeader>{user?.name || <Skeleton />} </UserListItemHeader>
+				<UserListItemContact>
 					{user?.email || <Skeleton count={1} />} <br /> {user?.phone || <Skeleton />} <br />
 					{user?.website || <Skeleton />}
-				</UserContact>
-				<UserCompanyName>{user?.company?.name || <Skeleton />}</UserCompanyName>
-				<UserCompanyCatchPhrase>
+				</UserListItemContact>
+				<UserListItemCompanyName>{user?.company?.name || <Skeleton />}</UserListItemCompanyName>
+				<UserListItemCompanyCatchPhrase>
 					{user?.company?.catchPhrase || <Skeleton />}
-				</UserCompanyCatchPhrase>
-				<UserCompanyBS>{user?.company?.bs || <Skeleton />}</UserCompanyBS>
-				<ButtonContainer onClick={detailsRedirect}>
-					<DetailsButton>{DETAILS}</DetailsButton>
-				</ButtonContainer>
-			</Container>
+				</UserListItemCompanyCatchPhrase>
+				<UserListItemCompanyBS>{user?.company?.bs || <Skeleton />}</UserListItemCompanyBS>
+				<UserListItemButtonContainer onClick={detailsRedirect}>
+					<UserListItemDetailsButton>{DETAILS}</UserListItemDetailsButton>
+				</UserListItemButtonContainer>
+			</UserListItemContainer>
 		</>
 	);
 };

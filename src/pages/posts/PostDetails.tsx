@@ -9,11 +9,11 @@ import { SmileOutlined } from '@ant-design/icons';
 
 import { PostDetails as PostDetailsInterface } from '../../interfaces/Post';
 import BackArrow from '../../shared/components/BackArrow';
-import { Container, DetailsHeader, HeaderContainer } from '../../shared/Styles';
-import { DELETE_POST, GET_POST_BY_ID } from './Queries';
-import CommentListItem from '../comments/CommentListItem';
-import CommentForm from '../comments/CommentForm';
-import { CREATE_COMMENT } from '../comments/Queries';
+import { Container, DetailsHeader, HeaderContainer, PlusMinusWrapper } from '../../shared/Styles';
+import { DELETE_POST, GET_POST_BY_ID } from '../../components/posts/Queries';
+import CommentListItem from '../../components/comments/CommentListItem';
+import CommentForm from '../../components/comments/CommentForm';
+import { CREATE_COMMENT } from '../../components/comments/Queries';
 import OpenNotification from '../../shared/functions/OpenNotification';
 import { CommentInput } from '../../interfaces/Comment';
 import {
@@ -32,7 +32,7 @@ import {
 	PostDescription,
 	CommentsManipulationContainer,
 	CommentsToggle,
-} from './Styles';
+} from '../../pages/posts/Styles';
 
 const PostDetails: React.FC = () => {
 	const [showComments, setShowComments] = useState(false);
@@ -105,7 +105,9 @@ const PostDetails: React.FC = () => {
 					<HeaderContainer>
 						<BackArrow url={generatePath(USER_DETAILS_PATH, { id })} />
 						<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
-						<ImMinus style={{ fontSize: '30px', marginTop: '5px' }} onClick={removePost} />
+						<PlusMinusWrapper>
+							<ImMinus onClick={removePost} />
+						</PlusMinusWrapper>
 					</HeaderContainer>
 					<PostTitle>{data?.post.title || <Skeleton />}</PostTitle>
 					<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>

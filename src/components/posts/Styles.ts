@@ -1,20 +1,18 @@
 import styled from 'styled-components';
 
-export const PostTitle = styled.div`
-	font-size: 30px;
-	font-weight: bold;
-	text-align: center;
-	margin: 30px 0px 30px 0px;
-`;
+export const PostListItemContainer = styled.div`
+    border 2px solid black; 
+    width 80%; 
+    margin: 10px auto 10px auto; 
+    padding: 10px;   
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;`;
 
-export const PostDescription = styled.div``;
-
-export const CommentsManipulationContainer = styled.div`
+export const PostListItemTitle = styled.div`
 	display: flex;
-	justify-content: space-between;
-	margin: 20px 0 20px 0;
-`;
-export const CommentsToggle = styled.div`
-	color: blue;
-	text-decoration: underline;
+	margin: 0 0 0 0;
+	width: 100%;
+	height: 100%;
 `;

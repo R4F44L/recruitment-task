@@ -1,12 +1,12 @@
+import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_USERS } from './Queries';
-import UsersListItem from './UsersListItem';
+import { GET_USERS } from '../../components/users/Queries';
+import UsersListItem from '../../components/users/UsersListItem';
 import { UsersPage } from '../../interfaces/UsersPage';
 import { User } from '../../interfaces/User';
-import styled from 'styled-components';
 import { Alert } from 'antd';
 import { ERROR, ERROR_OCCURED_MESSAGE } from '../../shared/Strings';
-const Container = styled.div``;
+import { Container } from '../../shared/Styles';
 
 const UsersList: React.FC = () => {
 	const { data, loading, error } = useQuery<{ users: UsersPage }>(GET_USERS);
