@@ -12,7 +12,7 @@ import {
 	UserListItemDetailsButton,
 } from './Styles';
 
-const UsersListItem: React.FC = () => {
+const UsersListItemSkeleton: React.FC = () => {
 	return (
 		<UserListItemContainer>
 			<UserListItemHeader>
@@ -40,4 +40,4 @@ const UsersListItem: React.FC = () => {
 	);
 };
 
-export default React.memo(UsersListItem);
+export default React.memo(UsersListItemSkeleton);
