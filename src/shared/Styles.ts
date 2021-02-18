@@ -33,12 +33,20 @@ export const DeleteIcon = styled(RiDeleteBin6Line)`
 	vertical-align: middle;
 	display: inline-block;
 	margin-top: 3px;
+	&:hover {
+		color: red !important;
+		cursor: pointer
+	}
 `;
 export const RightArrow = styled(AiOutlineRight)`
 	margin-left: auto;
 	vertical-align: middle;
 	margin-top: 3px;
 	display: inline-block;
+	&:hover {
+		color: green !important;
+		cursor: pointer 
+	}
 `;
 
 export const GreenSmile = styled(SmileOutlined)`
@@ -52,9 +60,17 @@ export const RedFrown = styled(FrownOutlined)`
 export const MinusIcon = styled(ImMinus)`
 	font-size: 30px;
 	margin-top: 5px;
+	&:hover {
+		cursor: pointer;
+		color: red !important;
+	}
 `;
 
 export const PlusIcon = styled(ImPlus)`
 	font-size: 30px;
 	margin-top: 5px;
+	&:hover {
+		color: green !important;
+		cursor: pointer 
+	}
 `;

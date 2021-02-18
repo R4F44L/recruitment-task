@@ -23,6 +23,7 @@ interface UsersListItemProps {
 
 const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	const history = useHistory();
+
 	const detailsRedirect = useCallback(() => {
 		history.push(generatePath(USER_DETAILS_PATH, { id: user.id }));
 	}, [user, history]);

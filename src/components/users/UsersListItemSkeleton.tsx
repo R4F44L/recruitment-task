@@ -12,32 +12,30 @@ import {
 	UserListItemDetailsButton,
 } from './Styles';
 
-const UsersListItemSkeleton: React.FC = () => {
-	return (
-		<UserListItemContainer>
-			<UserListItemHeader>
+const UsersListItemSkeleton: React.FC = () => (
+	<UserListItemContainer>
+		<UserListItemHeader>
+			<Skeleton />
+		</UserListItemHeader>
+		<UserListItemContact>
+			<Skeleton count={1} /> <br /> <Skeleton /> <br />
+			<Skeleton />
+		</UserListItemContact>
+		<UserListItemCompanyName>
+			<Skeleton />
+		</UserListItemCompanyName>
+		<UserListItemCompanyCatchPhrase>
+			<Skeleton />
+		</UserListItemCompanyCatchPhrase>
+		<UserListItemCompanyBS>
+			<Skeleton />
+		</UserListItemCompanyBS>
+		<UserListItemButtonContainer>
+			<UserListItemDetailsButton>
 				<Skeleton />
-			</UserListItemHeader>
-			<UserListItemContact>
-				<Skeleton count={1} /> <br /> <Skeleton /> <br />
-				<Skeleton />
-			</UserListItemContact>
-			<UserListItemCompanyName>
-				<Skeleton />
-			</UserListItemCompanyName>
-			<UserListItemCompanyCatchPhrase>
-				<Skeleton />
-			</UserListItemCompanyCatchPhrase>
-			<UserListItemCompanyBS>
-				<Skeleton />
-			</UserListItemCompanyBS>
-			<UserListItemButtonContainer>
-				<UserListItemDetailsButton>
-					<Skeleton />
-				</UserListItemDetailsButton>
-			</UserListItemButtonContainer>
-		</UserListItemContainer>
-	);
-};
+			</UserListItemDetailsButton>
+		</UserListItemButtonContainer>
+	</UserListItemContainer>
+);
 
 export default React.memo(UsersListItemSkeleton);

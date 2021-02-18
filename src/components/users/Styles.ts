@@ -37,7 +37,12 @@ export const UserListItemDetailsButton = styled.button`
 	padding 20px 40px 20px 40px;
 	background-color: white; 
 	box-shadow: 4px 4px 2px -2px gray; 
-	width: 80%
+	width: 80%;
+	&:hover {
+		cursor: pointer;
+		background-color: blue;
+		color: white;
+	}
 `;
 
 export const PhoneLink = styled.a`

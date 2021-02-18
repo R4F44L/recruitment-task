@@ -18,7 +18,6 @@ interface PostListItemProps {
 
 const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 	const [loading, setLoading] = useState<boolean>(false);
-
 	const history = useHistory();
 	const { id } = useParams<IdParam>();
 

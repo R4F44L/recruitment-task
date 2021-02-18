@@ -33,7 +33,6 @@ const UserDetails: React.FC = () => {
 	const [visible, setVisible] = React.useState(false);
 	const [confirmLoading, setConfirmLoading] = React.useState(false);
 	const formRef = useRef<FormInstance>(null);
-
 	const { id } = useParams<IdParam>();
 
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
