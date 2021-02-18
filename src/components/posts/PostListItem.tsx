@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 
 import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
 import { DeleteIcon, GreenSmile, RightArrow, SkeletonFlexContainer } from '../../shared/Styles';
-import { DELETE_POST } from './Queries';
+import { DELETE_POST, GET_POST_BY_ID } from './Queries';
 import OpenNotification from '../../shared/functions/OpenNotification';
 import { DATA_SENT_CORRECTLY_MESSAGE, SUCCESS_MESSAGE } from '../../shared/Strings';
 import { PostListItemContainer, PostListItemTitle } from './Styles';
@@ -24,7 +24,9 @@ const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 
 	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
 		variables: { id: post?.id },
+		refetchQueries: [{ query: GET_POST_BY_ID, variables: { postId: post.id } }],
 	});
+
 	const postRedirect = useCallback(() => {
 		history.push(generatePath(POST_DETAILS_PATH, { id: id, postId: post.id }));
 	}, [post, history, id]);

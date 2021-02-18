@@ -45,9 +45,14 @@ const PostDetails: React.FC = () => {
 
 	const history = useHistory();
 	const { id, postId } = useParams<{ id: string; postId: string }>();
-	const [createComment] = useMutation<{}, CommentInput>(CREATE_COMMENT);
+
+	const [createComment] = useMutation<{}, CommentInput>(CREATE_COMMENT, {
+		refetchQueries: [{ query: GET_POST_BY_ID, variables: { postId } }],
+	});
+
 	const [deletePost] = useMutation<{}, { id: string | undefined }>(DELETE_POST, {
 		variables: { id: postId },
+		refetchQueries: [{ query: GET_POST_BY_ID, variables: { postId } }],
 	});
 
 	const toggleComments = useCallback(() => {

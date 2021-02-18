@@ -35,10 +35,14 @@ const UserDetails: React.FC = () => {
 	const formRef = useRef<FormInstance>(null);
 
 	const { id } = useParams<IdParam>();
+
 	const { data, loading, error } = useQuery<{ user: UserDetailsInterface }>(GET_USER_BY_ID, {
 		variables: { id },
 	});
-	const [createPost] = useMutation<{}, PostInput>(CREATE_POST);
+
+	const [createPost] = useMutation<{}, PostInput>(CREATE_POST, {
+		refetchQueries: [{ query: GET_USER_BY_ID, variables: { id } }],
+	});
 
 	const showModal = useCallback(() => {
 		setVisible(true);
