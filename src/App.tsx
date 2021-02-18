@@ -7,16 +7,14 @@ import { Routing } from './shared/Routing';
 import { client } from './shared/ApolloClient';
 import { AppContainer } from './shared/Styles';
 
-const App = () => {
-	return (
-		<ApolloProvider client={client}>
-			<IconContext.Provider value={{ color: 'blue' }}>
-				<AppContainer>
-					<Routing />
-				</AppContainer>
-			</IconContext.Provider>
-		</ApolloProvider>
-	);
-};
+const App = () => (
+	<ApolloProvider client={client}>
+		<IconContext.Provider value={{ color: 'blue' }}>
+			<AppContainer>
+				<Routing />
+			</AppContainer>
+		</IconContext.Provider>
+	</ApolloProvider>
+);
 
 export default App;
