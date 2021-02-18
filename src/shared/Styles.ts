@@ -8,6 +8,7 @@ export const SkeletonFlexContainer = styled.div`
 	width: 100%;
 	height: 100%;
 `;
+
 export const HeaderContainer = styled.div`
 	display: flex;
 	width: 100%;
@@ -38,6 +39,7 @@ export const DeleteIcon = styled(RiDeleteBin6Line)`
 		cursor: pointer
 	}
 `;
+
 export const RightArrow = styled(AiOutlineRight)`
 	margin-left: auto;
 	vertical-align: middle;
@@ -54,7 +56,7 @@ export const GreenSmile = styled(SmileOutlined)`
 `;
 
 export const RedFrown = styled(FrownOutlined)`
-	color: red
+	color: red;
 `;
 
 export const MinusIcon = styled(ImMinus)`

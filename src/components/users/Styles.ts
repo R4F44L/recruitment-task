@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const UserListItemContainer = styled.div`
 	padding: 10px; 
 	margin: 40px;
-	border 2px black solid;
+	border: 2px black solid;
 	min-width: 300px;
-	max-width:300px;
-	float: left`;
+	max-width: 300px;
+	float: left;
+`;
 
 export const UserListItemHeader = styled.div`
 	font-size: 20px;
@@ -34,7 +35,7 @@ export const UserListItemButtonContainer = styled.div`
 `;
 
 export const UserListItemDetailsButton = styled.button`
-	padding 20px 40px 20px 40px;
+	padding: 20px 40px 20px 40px;
 	background-color: white; 
 	box-shadow: 4px 4px 2px -2px gray; 
 	width: 80%;
@@ -45,14 +46,8 @@ export const UserListItemDetailsButton = styled.button`
 	}
 `;
 
-export const PhoneLink = styled.a`
+export const PhoneLink = styled.a``;
 
-`;
+export const EmailLink = styled.a``;
 
-export const EmailLink = styled.a`
-
-`;
-
-export const SiteLink = styled.a`
-
-`;
+export const SiteLink = styled.a``;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const PostListItemContainer = styled.div`
-    border 2px solid black; 
-    width 80%; 
+    border: 2px solid black; 
+    width: 80%; 
     margin: 10px auto 10px auto; 
     padding: 10px;   
     display: flex;

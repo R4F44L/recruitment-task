@@ -13,6 +13,7 @@ const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 
 	forward(operation);
 });
+
 const httpLink = new HttpLink({
 	uri: API_URL,
 });

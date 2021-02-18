@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const CommentListItemContainer = styled.div`
 	border: 1px solid black; 
-	padding 20px; 
-	margin: 20px 0 20px 0
+	padding: 20px; 
+	margin: 20px 0 20px 0;
 `;
 
 export const CommentListItemHeader = styled.div`
