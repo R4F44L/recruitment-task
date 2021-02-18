@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import Skeleton from 'react-loading-skeleton';
 import { generatePath, useHistory } from 'react-router-dom';
 
 import { User } from '../../interfaces/User';
