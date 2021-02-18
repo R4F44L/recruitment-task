@@ -28,6 +28,7 @@ import {
 } from '../../shared/Strings';
 import { ROOT_PATH } from '../../shared/Constants';
 import PostListItemSkeleton from '../../components/posts/PostListItemSkeleton';
+import ListSkeleton from '../../shared/components/ListSkeleton';
 
 const UserDetails: React.FC = () => {
 	const [visible, setVisible] = React.useState(false);
@@ -74,11 +75,13 @@ const UserDetails: React.FC = () => {
 				<DetailsHeader>{loading ? <Skeleton /> : data?.user.name}</DetailsHeader>
 				<PlusIcon onClick={showModal} />
 			</HeaderContainer>
-			{loading
-				? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <PostListItemSkeleton key={i} />)
-				: data?.user.posts?.data.map((p: PostListItemInterface) => (
-						<PostListItem post={p} key={p.id} />
-				  ))}
+			{loading ? (
+				<ListSkeleton range={8} component={PostListItemSkeleton} />
+			) : (
+				data?.user.posts?.data.map((p: PostListItemInterface) => (
+					<PostListItem post={p} key={p.id} />
+				))
+			)}
 			<Modal
 				title={ADD_COMMENT}
 				visible={visible}
