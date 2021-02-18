@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
 
 export const SkeletonFlexContainer = styled.div`
 	width: 100%;
@@ -41,4 +42,12 @@ export const RightArrowWrapper = styled.div`
 export const PlusMinusWrapper= styled.div`
     font-size: 30px;
     margin-top: 5px;
+`;
+
+export const GreenSmile = styled(SmileOutlined)`
+	color: green;
+`;
+
+export const RedFrown = styled(FrownOutlined)`
+	color: red
 `;

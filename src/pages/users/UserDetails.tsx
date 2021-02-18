@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { ImPlus } from 'react-icons/im';
 import Skeleton from 'react-loading-skeleton';
 import { Alert, FormInstance, Modal } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
 import { useMutation, useQuery } from '@apollo/client';
 
 import { PostInput, PostListItem as PostListItemInterface } from '../../interfaces/Post';
@@ -12,7 +11,13 @@ import PostListItem from '../../components/posts/PostListItem';
 import { GET_USER_BY_ID } from '../../components/users/Queries';
 import { IdParam } from '../../interfaces/RouteParams';
 import BackArrow from '../../shared/components/BackArrow';
-import { Container, DetailsHeader, HeaderContainer, PlusMinusWrapper } from '../../shared/Styles';
+import {
+	Container,
+	DetailsHeader,
+	GreenSmile,
+	HeaderContainer,
+	PlusMinusWrapper,
+} from '../../shared/Styles';
 import PostForm from '../../components/posts/PostForm';
 import { CREATE_POST } from '../../components/posts/Queries';
 import OpenNotification from '../../shared/functions/OpenNotification';
@@ -23,6 +28,7 @@ import {
 	ADD_COMMENT,
 } from '../../shared/Strings';
 import { ROOT_PATH } from '../../shared/Constants';
+import PostListItemSkeleton from '../../components/posts/PostListItemSkeleton';
 
 const UserDetails: React.FC = () => {
 	const [visible, setVisible] = React.useState(false);
@@ -48,12 +54,7 @@ const UserDetails: React.FC = () => {
 			});
 			setConfirmLoading(false);
 			setVisible(false);
-			OpenNotification(
-				SUCCESS_MESSAGE,
-				DATA_SENT_CORRECTLY_MESSAGE,
-				5,
-				<SmileOutlined style={{ color: 'green' }} />
-			);
+			OpenNotification(SUCCESS_MESSAGE, DATA_SENT_CORRECTLY_MESSAGE, 5, <GreenSmile />);
 		} catch (err) {
 			setConfirmLoading(false);
 		}
@@ -64,34 +65,30 @@ const UserDetails: React.FC = () => {
 	}, [setVisible]);
 
 	return (
-		<>
-			<Container>
-				{error && (
-					<Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />
-				)}
-				<HeaderContainer>
-					<BackArrow url={ROOT_PATH} />
-					<DetailsHeader>{data?.user.name || <Skeleton />}</DetailsHeader>
-					<PlusMinusWrapper>
-						<ImPlus onClick={showModal} />
-					</PlusMinusWrapper>
-				</HeaderContainer>
-				{loading
-					? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <PostListItem key={i} />)
-					: data?.user.posts?.data.map((p: PostListItemInterface) => (
-							<PostListItem post={p} key={p.id} />
-					  ))}
-				<Modal
-					title={ADD_COMMENT}
-					visible={visible}
-					onOk={handleOk}
-					confirmLoading={confirmLoading}
-					onCancel={handleCancel}
-				>
-					<PostForm ref={formRef} />
-				</Modal>
-			</Container>
-		</>
+		<Container>
+			{error && <Alert message={ERROR_OCCURED_MESSAGE} description="Error" type="error" closable />}
+			<HeaderContainer>
+				<BackArrow url={ROOT_PATH} />
+				<DetailsHeader>{loading ? <Skeleton /> : data?.user.name}</DetailsHeader>
+				<PlusMinusWrapper>
+					<ImPlus onClick={showModal} />
+				</PlusMinusWrapper>
+			</HeaderContainer>
+			{loading
+				? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <PostListItemSkeleton key={i} />)
+				: data?.user.posts?.data.map((p: PostListItemInterface) => (
+						<PostListItem post={p} key={p.id} />
+				  ))}
+			<Modal
+				title={ADD_COMMENT}
+				visible={visible}
+				onOk={handleOk}
+				confirmLoading={confirmLoading}
+				onCancel={handleCancel}
+			>
+				<PostForm ref={formRef} />
+			</Modal>
+		</Container>
 	);
 };
 

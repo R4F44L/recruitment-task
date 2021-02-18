@@ -13,15 +13,13 @@ interface CommentListItemProps {
 }
 
 const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => (
-	<>
-		<CommentListItemContainer>
-			<CommentListItemHeader>
-				<CommentName>{comment.name}</CommentName>
-				<CommentEmail>{comment.email}</CommentEmail>
-			</CommentListItemHeader>
-			{comment.body}
-		</CommentListItemContainer>
-	</>
+	<CommentListItemContainer>
+		<CommentListItemHeader>
+			<CommentName>{comment.name}</CommentName>
+			<CommentEmail>{comment.email}</CommentEmail>
+		</CommentListItemHeader>
+		{comment.body}
+	</CommentListItemContainer>
 );
 
 export default React.memo(CommentListItem);

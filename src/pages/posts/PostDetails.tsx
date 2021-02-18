@@ -4,11 +4,16 @@ import Skeleton from 'react-loading-skeleton';
 import { ImMinus } from 'react-icons/im';
 import { Alert, FormInstance, Modal, Spin } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
-import { SmileOutlined } from '@ant-design/icons';
 
 import { PostDetails as PostDetailsInterface } from '../../interfaces/Post';
 import BackArrow from '../../shared/components/BackArrow';
-import { Container, DetailsHeader, HeaderContainer, PlusMinusWrapper } from '../../shared/Styles';
+import {
+	Container,
+	DetailsHeader,
+	GreenSmile,
+	HeaderContainer,
+	PlusMinusWrapper,
+} from '../../shared/Styles';
 import { DELETE_POST, GET_POST_BY_ID } from '../../components/posts/Queries';
 import CommentListItem from '../../components/comments/CommentListItem';
 import CommentForm from '../../components/comments/CommentForm';
@@ -68,12 +73,7 @@ const PostDetails: React.FC = () => {
 			await createComment({
 				variables: { comment: { name, email, body } },
 			});
-			OpenNotification(
-				SUCCESS_MESSAGE,
-				DATA_SENT_CORRECTLY_MESSAGE,
-				5,
-				<SmileOutlined style={{ color: 'green' }} />
-			);
+			OpenNotification(SUCCESS_MESSAGE, DATA_SENT_CORRECTLY_MESSAGE, 5, <GreenSmile />);
 			setConfirmLoading(false);
 			setVisible(false);
 		} catch {
@@ -95,46 +95,44 @@ const PostDetails: React.FC = () => {
 	}, [deletePost, setConfirmLoading, history, id]);
 
 	return (
-		<>
-			<Spin spinning={confirmLoading}>
-				<Container>
-					{error && (
-						<Alert message={ERROR_OCCURED_MESSAGE} description={ERROR} type="error" closable />
-					)}
-					<HeaderContainer>
-						<BackArrow url={generatePath(USER_DETAILS_PATH, { id })} />
-						<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
-						<PlusMinusWrapper>
-							<ImMinus onClick={removePost} />
-						</PlusMinusWrapper>
-					</HeaderContainer>
-					<PostTitle>{data?.post.title || <Skeleton />}</PostTitle>
-					<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>
-					<CommentsManipulationContainer>
-						<CommentsToggle onClick={toggleComments}>
-							{!showComments ? SHOW : HIDE} {COMMENTS}
-						</CommentsToggle>
-						<CommentsToggle onClick={showModal}>{ADD_COMMENT}</CommentsToggle>
-					</CommentsManipulationContainer>
-					{showComments ? (
-						data?.post.comments.data.map((c) => (
-							<CommentListItem comment={c} key={c.id}></CommentListItem>
-						))
-					) : (
-						<></>
-					)}
-					<Modal
-						title={ADD_COMMENT}
-						visible={visible}
-						onOk={handleOk}
-						confirmLoading={confirmLoading}
-						onCancel={handleCancel}
-					>
-						<CommentForm ref={formRef}></CommentForm>
-					</Modal>
-				</Container>
-			</Spin>
-		</>
+		<Spin spinning={confirmLoading}>
+			<Container>
+				{error && (
+					<Alert message={ERROR_OCCURED_MESSAGE} description={ERROR} type="error" closable />
+				)}
+				<HeaderContainer>
+					<BackArrow url={generatePath(USER_DETAILS_PATH, { id })} />
+					<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
+					<PlusMinusWrapper>
+						<ImMinus onClick={removePost} />
+					</PlusMinusWrapper>
+				</HeaderContainer>
+				<PostTitle>{data?.post.title || <Skeleton />}</PostTitle>
+				<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>
+				<CommentsManipulationContainer>
+					<CommentsToggle onClick={toggleComments}>
+						{!showComments ? SHOW : HIDE} {COMMENTS}
+					</CommentsToggle>
+					<CommentsToggle onClick={showModal}>{ADD_COMMENT}</CommentsToggle>
+				</CommentsManipulationContainer>
+				{showComments ? (
+					data?.post.comments.data.map((c) => (
+						<CommentListItem comment={c} key={c.id}></CommentListItem>
+					))
+				) : (
+					<></>
+				)}
+				<Modal
+					title={ADD_COMMENT}
+					visible={visible}
+					onOk={handleOk}
+					confirmLoading={confirmLoading}
+					onCancel={handleCancel}
+				>
+					<CommentForm ref={formRef}></CommentForm>
+				</Modal>
+			</Container>
+		</Spin>
 	);
 };
 

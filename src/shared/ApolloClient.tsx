@@ -1,19 +1,14 @@
 import { HttpLink, ApolloClient, InMemoryCache, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
-import { FrownOutlined } from '@ant-design/icons';
 
 import { API_URL } from '../env/variables';
 import OpenNotification from './functions/OpenNotification';
 import { ERROR_OCCURED_MESSAGE } from './Strings';
+import { RedFrown } from './Styles';
 
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
 	if (graphQLErrors) {
-		OpenNotification(
-			ERROR_OCCURED_MESSAGE,
-			'Please check provided data',
-			5,
-			<FrownOutlined style={{ color: 'red' }} />
-		);
+		OpenNotification(ERROR_OCCURED_MESSAGE, 'Please check provided data', 5, <RedFrown />);
 	}
 
 	forward(operation);

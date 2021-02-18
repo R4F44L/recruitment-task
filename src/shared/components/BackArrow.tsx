@@ -22,12 +22,10 @@ const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
 		history.push(url);
 	}, [history, url]);
 	return (
-		<>
-			<Container onClick={backRedirect}>
-				<AiOutlineArrowLeft />
-				{BACK}
-			</Container>
-		</>
+		<Container onClick={backRedirect}>
+			<AiOutlineArrowLeft />
+			{BACK}
+		</Container>
 	);
 };
 export default BackArrow;
