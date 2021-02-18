@@ -39,3 +39,15 @@ export const UserListItemDetailsButton = styled.button`
 	box-shadow: 4px 4px 2px -2px gray; 
 	width: 80%
 `;
+
+export const PhoneLink = styled.a`
+
+`;
+
+export const EmailLink = styled.a`
+
+`;
+
+export const SiteLink = styled.a`
+
+`;

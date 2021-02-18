@@ -16,7 +16,5 @@ export const CommentName = styled.span`
 	font-weight: bold;
 `;
 
-export const CommentEmail = styled.span`
-	color: blue;
-	text-decoration: underline;
+export const CommentEmail = styled.a`
 `;

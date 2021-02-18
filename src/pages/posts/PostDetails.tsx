@@ -131,7 +131,7 @@ const PostDetails: React.FC = () => {
 					confirmLoading={confirmLoading}
 					onCancel={handleCancel}
 				>
-					<CommentForm ref={formRef}></CommentForm>
+					<CommentForm ref={formRef} />
 				</Modal>
 			</Container>
 		</Spin>

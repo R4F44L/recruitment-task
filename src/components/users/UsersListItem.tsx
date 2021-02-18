@@ -7,12 +7,14 @@ import { USER_DETAILS_PATH } from '../../shared/Constants';
 import {
 	UserListItemContainer,
 	UserListItemHeader,
-	UserListItemContact,
 	UserListItemCompanyName,
 	UserListItemCompanyCatchPhrase,
 	UserListItemCompanyBS,
 	UserListItemButtonContainer,
 	UserListItemDetailsButton,
+	PhoneLink,
+	EmailLink,
+	SiteLink,
 } from './Styles';
 
 interface UsersListItemProps {
@@ -28,10 +30,11 @@ const UsersListItem: React.FC<UsersListItemProps> = ({ user }) => {
 	return (
 		<UserListItemContainer>
 			<UserListItemHeader>{user.name} </UserListItemHeader>
-			<UserListItemContact>
-				{user.email} <br /> {user.phone} <br />
-				{user.website}
-			</UserListItemContact>
+			<EmailLink href={`mailto:${user.email}`}>{user.email}</EmailLink>
+			<br />
+			<PhoneLink href={`tel:${user.phone}`}>{user.phone}</PhoneLink>
+			<br />
+			<SiteLink href={`//${user.website}`}>{user.website}</SiteLink>
 			<UserListItemCompanyName>{user.company?.name}</UserListItemCompanyName>
 			<UserListItemCompanyCatchPhrase>{user.company?.catchPhrase}</UserListItemCompanyCatchPhrase>
 			<UserListItemCompanyBS>{user.company?.bs}</UserListItemCompanyBS>

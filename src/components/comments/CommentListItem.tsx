@@ -16,7 +16,7 @@ const CommentListItem: React.FC<CommentListItemProps> = ({ comment }) => (
 	<CommentListItemContainer>
 		<CommentListItemHeader>
 			<CommentName>{comment.name}</CommentName>
-			<CommentEmail>{comment.email}</CommentEmail>
+			<CommentEmail href={`mailto:${comment.email}`}>{comment.email}</CommentEmail>
 		</CommentListItemHeader>
 		{comment.body}
 	</CommentListItemContainer>
