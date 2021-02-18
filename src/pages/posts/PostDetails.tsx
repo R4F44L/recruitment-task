@@ -117,13 +117,10 @@ const PostDetails: React.FC = () => {
 					</CommentsToggle>
 					<CommentsToggle onClick={showModal}>{ADD_COMMENT}</CommentsToggle>
 				</CommentsManipulationContainer>
-				{showComments ? (
+				{showComments &&
 					data?.post.comments.data.map((c) => (
 						<CommentListItem comment={c} key={c.id}></CommentListItem>
-					))
-				) : (
-					<></>
-				)}
+					))}
 				<Modal
 					title={ADD_COMMENT}
 					visible={visible}

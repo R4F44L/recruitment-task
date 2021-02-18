@@ -1,20 +1,13 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { BACK } from '../Strings';
+import { BackArrowContainer } from './Styles';
 
 interface BackArrowProps {
 	url: string;
 }
-
-const Container = styled.div`
-	display: flex;
-	align-items: center;
-	font-size: 20px;
-	color: blue;
-`;
 
 const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
 	const history = useHistory();
@@ -24,10 +17,10 @@ const BackArrow: React.FC<BackArrowProps> = ({ url }) => {
 	}, [history, url]);
 
 	return (
-		<Container onClick={backRedirect}>
+		<BackArrowContainer onClick={backRedirect}>
 			<AiOutlineArrowLeft />
 			{BACK}
-		</Container>
+		</BackArrowContainer>
 	);
 };
 

@@ -1,6 +1,6 @@
 import { notification } from "antd";
 
-const OpenNotification = (message: string, description : string, duration: number, icon?: JSX.Element) => {
+const openNotification = (message: string, description : string, duration: number, icon?: JSX.Element) => {
   notification.open({
     message,
     description,
@@ -9,4 +9,4 @@ const OpenNotification = (message: string, description : string, duration: numbe
   });
 };
 
-export default OpenNotification;
+export default openNotification;

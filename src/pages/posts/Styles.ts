@@ -15,5 +15,10 @@ export const CommentsManipulationContainer = styled.div`
 	margin: 20px 0 20px 0;
 `;
 
-export const CommentsToggle = styled.a`
+export const CommentsToggle = styled.span`
+	color: blue;
+	text-decoration: none;
+	&:hover{
+		cursor: pointer;
+	}
 `;
