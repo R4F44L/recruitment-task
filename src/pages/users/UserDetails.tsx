@@ -1,6 +1,5 @@
 import React, { useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { ImPlus } from 'react-icons/im';
 import Skeleton from 'react-loading-skeleton';
 import { Alert, FormInstance, Modal } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
@@ -16,7 +15,7 @@ import {
 	DetailsHeader,
 	GreenSmile,
 	HeaderContainer,
-	PlusMinusWrapper,
+	PlusIcon,
 } from '../../shared/Styles';
 import PostForm from '../../components/posts/PostForm';
 import { CREATE_POST } from '../../components/posts/Queries';
@@ -70,9 +69,7 @@ const UserDetails: React.FC = () => {
 			<HeaderContainer>
 				<BackArrow url={ROOT_PATH} />
 				<DetailsHeader>{loading ? <Skeleton /> : data?.user.name}</DetailsHeader>
-				<PlusMinusWrapper>
-					<ImPlus onClick={showModal} />
-				</PlusMinusWrapper>
+				<PlusIcon onClick={showModal} />
 			</HeaderContainer>
 			{loading
 				? [1, 2, 3, 4, 5, 6, 7, 8].map((i) => <PostListItemSkeleton key={i} />)

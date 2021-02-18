@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
-import { ImMinus } from 'react-icons/im';
 import { Alert, FormInstance, Modal, Spin } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -12,7 +11,7 @@ import {
 	DetailsHeader,
 	GreenSmile,
 	HeaderContainer,
-	PlusMinusWrapper,
+	MinusIcon,
 } from '../../shared/Styles';
 import { DELETE_POST, GET_POST_BY_ID } from '../../components/posts/Queries';
 import CommentListItem from '../../components/comments/CommentListItem';
@@ -103,9 +102,7 @@ const PostDetails: React.FC = () => {
 				<HeaderContainer>
 					<BackArrow url={generatePath(USER_DETAILS_PATH, { id })} />
 					<DetailsHeader>{data?.post.user?.username || <Skeleton />}</DetailsHeader>
-					<PlusMinusWrapper>
-						<ImMinus onClick={removePost} />
-					</PlusMinusWrapper>
+					<MinusIcon onClick={removePost} />
 				</HeaderContainer>
 				<PostTitle>{data?.post.title || <Skeleton />}</PostTitle>
 				<PostDescription>{data?.post.body || <Skeleton />} </PostDescription>

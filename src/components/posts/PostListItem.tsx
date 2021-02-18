@@ -1,17 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
-import { AiOutlineRight } from 'react-icons/ai';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Spin } from 'antd';
 import { useMutation } from '@apollo/client';
 
 import { PostListItem as PostListItemInterface } from '../../interfaces/Post';
-import {
-	DeleteIconWrapper,
-	GreenSmile,
-	RightArrowWrapper,
-	SkeletonFlexContainer,
-} from '../../shared/Styles';
+import { DeleteIcon, GreenSmile, RightArrow, SkeletonFlexContainer } from '../../shared/Styles';
 import { DELETE_POST } from './Queries';
 import OpenNotification from '../../shared/functions/OpenNotification';
 import { DATA_SENT_CORRECTLY_MESSAGE, SUCCESS_MESSAGE } from '../../shared/Strings';
@@ -49,13 +42,9 @@ const PostListItem: React.FC<PostListItemProps> = ({ post }) => {
 		<Spin spinning={loading}>
 			<PostListItemContainer>
 				<PostListItemTitle>
-					<DeleteIconWrapper onClick={removePost}>
-						<RiDeleteBin6Line />
-					</DeleteIconWrapper>
+					<DeleteIcon onClick={removePost} />
 					<SkeletonFlexContainer>{post.title}</SkeletonFlexContainer>
-					<RightArrowWrapper onClick={postRedirect}>
-						<AiOutlineRight />
-					</RightArrowWrapper>
+					<RightArrow onClick={postRedirect} />
 				</PostListItemTitle>
 			</PostListItemContainer>
 		</Spin>

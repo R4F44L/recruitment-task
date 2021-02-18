@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { SmileOutlined, FrownOutlined } from '@ant-design/icons';
+import { ImMinus, ImPlus } from 'react-icons/im';
+import { AiOutlineRight } from 'react-icons/ai';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 export const SkeletonFlexContainer = styled.div`
 	width: 100%;
-
 	height: 100%;
 `;
 export const HeaderContainer = styled.div`
@@ -26,22 +28,17 @@ export const AppContainer = styled.div`
 	margin: 50px auto 0px auto;
 `;
 
-export const DeleteIconWrapper = styled.div`
+export const DeleteIcon = styled(RiDeleteBin6Line)`
 	margin-right: 10px;
 	vertical-align: middle;
 	display: inline-block;
 	margin-top: 3px;
 `;
-export const RightArrowWrapper = styled.div`
+export const RightArrow = styled(AiOutlineRight)`
 	margin-left: auto;
 	vertical-align: middle;
 	margin-top: 3px;
 	display: inline-block;
-`;
-
-export const PlusMinusWrapper= styled.div`
-    font-size: 30px;
-    margin-top: 5px;
 `;
 
 export const GreenSmile = styled(SmileOutlined)`
@@ -50,4 +47,14 @@ export const GreenSmile = styled(SmileOutlined)`
 
 export const RedFrown = styled(FrownOutlined)`
 	color: red
+`;
+
+export const MinusIcon = styled(ImMinus)`
+	font-size: 30px;
+	margin-top: 5px;
+`;
+
+export const PlusIcon = styled(ImPlus)`
+	font-size: 30px;
+	margin-top: 5px;
 `;
